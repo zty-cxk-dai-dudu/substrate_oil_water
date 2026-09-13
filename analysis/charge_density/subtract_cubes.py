@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import itertools
 import json
@@ -11,7 +12,6 @@ import re
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parent
 CALCS = ("ab_full", "a_sio2oil", "b_h2o")
 
 
@@ -69,11 +69,17 @@ def total_energy(path: Path) -> float:
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--root", type=Path, required=True, help="Directory with ab_full, a_sio2oil and b_h2o calculation subdirectories")
+    parser.add_argument("--out", type=Path, help="Output directory (default: --root)")
+    args = parser.parse_args()
+    root = args.root.resolve()
+    out_dir = (args.out or root).resolve()
     for calc in CALCS:
-        if not output_complete(ROOT / calc / "output.log"):
+        if not output_complete(root / calc / "output.log"):
             raise RuntimeError(f"Incomplete or unconverged CP2K output: {calc}")
-    energies = {calc: total_energy(ROOT / calc / "output.log") for calc in CALCS}
-    paths = [find_density_cube(ROOT / calc) for calc in CALCS]
+    energies = {calc: total_energy(root / calc / "output.log") for calc in CALCS}
+    paths = [find_density_cube(root / calc) for calc in CALCS]
     parsed = [read_cube_header(path) for path in paths]
     handles = [item[0] for item in parsed]
     headers = [item[1] for item in parsed]
@@ -93,7 +99,8 @@ def main():
     minimum = float("inf")
     maximum = float("-inf")
     count = 0
-    out_path = ROOT / "CHGDIFF_CP2K.cube"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out_path = out_dir / "CHGDIFF_CP2K.cube"
     with out_path.open("w") as out:
         out.write("CP2K electron-density difference\n")
         out.write("rho(full)-rho(SiO2+oil)-rho(H2O); ghost basis retained\n")
@@ -139,9 +146,9 @@ def main():
         "chgdiff_sha256": digest,
         "status": "ok",
     }
-    (ROOT / "charge_difference_summary.json").write_text(json.dumps(summary, indent=2) + "\n")
-    (ROOT / "CHGDIFF_CP2K.sha256").write_text(f"{digest}  CHGDIFF_CP2K.cube\n")
-    (ROOT / "COMPLETE").write_text("validated\n")
+    (out_dir / "charge_difference_summary.json").write_text(json.dumps(summary, indent=2) + "\n")
+    (out_dir / "CHGDIFF_CP2K.sha256").write_text(f"{digest}  CHGDIFF_CP2K.cube\n")
+    (out_dir / "COMPLETE").write_text("validated\n")
     print(json.dumps(summary, indent=2))
 
 

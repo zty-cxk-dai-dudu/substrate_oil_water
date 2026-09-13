@@ -16,7 +16,6 @@ import numpy as np
 from ase import units
 from ase.io import read, write
 from ase.md.nose_hoover_chain import NoseHooverChainNVT
-from mace.calculators import MACECalculator
 
 
 SOURCE_STEP = 200_000
@@ -216,6 +215,7 @@ def create_h5(path, nframes, atoms, segment_index, first_abs_step):
 
 def main():
     args = arguments()
+    from mace.calculators import MACECalculator
     output = Path(args.output).resolve()
     segments = output / "segments"
     checkpoints = output / "checkpoints"

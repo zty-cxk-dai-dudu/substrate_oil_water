@@ -1,18 +1,47 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-WORK=/mnt/d/jacs/caf2_mace_weight0p25_20260805
-VENV="$WORK/.venv_mace"
-DATA="$WORK/data"
-RUN="$WORK/train_seed20260805"
-mkdir -p "$RUN"
-cd "$RUN"
+usage() {
+  cat <<'EOF'
+Usage: run_train.sh --data-dir DIR --output DIR [--mace-run-train EXE] [--dry-run]
 
-"$VENV/bin/mace_run_train" \
+Train the CaF2/oil/water MACE model with the original seed and hyperparameters.
+DIR must contain train_weighted_high0p25.xyz, validation_base403.xyz and
+evaluation_high1432.xyz. Outputs and training.complete are written to --output.
+The executable defaults to MACE_RUN_TRAIN or mace_run_train on PATH.
+--dry-run prints the command without creating files or starting training.
+EOF
+}
+
+data_dir=""
+run_dir=""
+train_exe="${MACE_RUN_TRAIN:-mace_run_train}"
+dry_run=false
+while (($#)); do
+  case "$1" in
+    --help|-h) usage; exit 0 ;;
+    --data-dir|--output|--mace-run-train)
+      if (($# < 2)); then printf 'Missing value for %s\n' "$1" >&2; exit 2; fi
+      case "$1" in
+        --data-dir) data_dir="$2" ;;
+        --output) run_dir="$2" ;;
+        --mace-run-train) train_exe="$2" ;;
+      esac
+      shift 2 ;;
+    --dry-run) dry_run=true; shift ;;
+    *) printf 'Unknown argument: %s\n' "$1" >&2; usage >&2; exit 2 ;;
+  esac
+done
+if [[ -z "$data_dir" || -z "$run_dir" ]]; then usage >&2; exit 2; fi
+[[ "$data_dir" = /* ]] || data_dir="$PWD/$data_dir"
+[[ "$run_dir" = /* ]] || run_dir="$PWD/$run_dir"
+if [[ "$train_exe" == */* && "$train_exe" != /* ]]; then train_exe="$PWD/$train_exe"; fi
+
+train_command=("$train_exe" \
   --name=caf2_mace_weight0p25_seed20260805 \
-  --train_file="$DATA/train_weighted_high0p25.xyz" \
-  --valid_file="$DATA/validation_base403.xyz" \
-  --test_file="$DATA/evaluation_high1432.xyz" \
+  --train_file="$data_dir/train_weighted_high0p25.xyz" \
+  --valid_file="$data_dir/validation_base403.xyz" \
+  --test_file="$data_dir/evaluation_high1432.xyz" \
   --energy_key=energy \
   --forces_key=forces \
   --E0s=average \
@@ -45,6 +74,25 @@ cd "$RUN"
   --error_table=PerAtomMAE \
   --restart_latest \
   --keep_checkpoints \
-  --save_cpu
+  --save_cpu)
 
-touch "$WORK/training.complete"
+if "$dry_run"; then
+  printf 'cd %q\n' "$run_dir"
+  printf '%q ' "${train_command[@]}"
+  printf '\n'
+  exit 0
+fi
+for input_name in train_weighted_high0p25.xyz validation_base403.xyz evaluation_high1432.xyz; do
+  if [[ ! -r "$data_dir/$input_name" ]]; then
+    printf 'Training input not found: %s\n' "$data_dir/$input_name" >&2
+    exit 2
+  fi
+done
+if ! command -v "$train_exe" >/dev/null; then
+  printf 'MACE training executable not found: %s\n' "$train_exe" >&2
+  exit 2
+fi
+mkdir -p "$run_dir"
+cd "$run_dir"
+"${train_command[@]}"
+touch "$run_dir/training.complete"

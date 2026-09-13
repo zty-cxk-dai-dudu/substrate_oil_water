@@ -6,7 +6,7 @@ Tianyue Zhang, Xiaoke Chen, Jing Li and Xiao-Yu Yang
 
 **Project website:** [https://zty-cxk-dai-dudu.github.io/substrate_oil_water/](https://zty-cxk-dai-dudu.github.io/substrate_oil_water/)
 
-**Complete download:** [Code, source data, structures, trajectories and potential-energy models](https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.6.0/substrate_oil_water_complete_v0.6.0.zip)
+**Complete download:** [Code, source data, structures, trajectories and potential-energy models](https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.6.1/substrate_oil_water_complete_v0.6.1.zip)
 
 ## Contents
 
@@ -32,7 +32,7 @@ Tianyue Zhang, Xiaoke Chen, Jing Li and Xiao-Yu Yang
 
 The [data directory](data/README.md) contains 11 figure workbooks and companion numerical tables for water and oil dynamics, layer spectra, and potential validation. The [figure index](data/figure_index.csv) maps each table to its panels.
 
-[Download source data](https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.6.0/substrate_oil_water_source_data_v0.6.0.zip) · [Data and code availability](DATA_AVAILABILITY.md)
+[Download source data](https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.6.1/substrate_oil_water_source_data_v0.6.1.zip) · [Data and code availability](DATA_AVAILABILITY.md)
 
 ## Structures
 
@@ -60,7 +60,9 @@ python -m venv .venv
 python -m pip install -r requirements.txt
 ```
 
-Simulation scripts use MACE, DeePMD-kit/LAMMPS, CP2K or VASP, according to the supplied input. The per-water VDOS wrappers use VASPKIT. Set the input, output, model and executable paths for the calculation being run. Scripts with command-line options list them with `--help`; file-based workflows specify paths near the top of the script.
+Simulation scripts use MACE, DeePMD-kit/LAMMPS, CP2K or VASP, according to the supplied input. The per-water VDOS wrappers use VASPKIT. Set the input, output, model and executable paths for the calculation being run. Scripts with command-line options list them with `--help`.
+
+See [WORKFLOWS.md](WORKFLOWS.md) for the input files, commands and outputs of the simulation and analysis workflows. The analysis environment includes pandas and Pillow as well as NumPy, SciPy, h5py, Matplotlib and ASE.
 
 ## Usage
 

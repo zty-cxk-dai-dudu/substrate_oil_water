@@ -3,8 +3,10 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
+import os
 import re
 import shutil
 from pathlib import Path
@@ -12,10 +14,7 @@ from pathlib import Path
 import numpy as np
 
 
-ROOT = Path(__file__).resolve().parent
-SOURCE = ROOT.parent / "POSCAR"
 OH_CUTOFF_A = 1.25
-DATA_DIR = "/home/pc/桌面/plumed_env/share/cp2k/data"
 
 
 def read_poscar(path: Path):
@@ -62,7 +61,8 @@ def kind_block(kind: str, element: str, ghost: bool = False) -> str:
 
 
 def make_input(project: str, labels, cart, cell, print_density: bool = True,
-               max_scf: int = 200, ignore_failure: bool = False) -> str:
+               max_scf: int = 200, ignore_failure: bool = False,
+               data_dir: Path | str = ".") -> str:
     used = []
     for label in labels:
         if label not in used:
@@ -94,8 +94,8 @@ def make_input(project: str, labels, cart, cell, print_density: bool = True,
 &FORCE_EVAL
   METHOD Quickstep
   &DFT
-    BASIS_SET_FILE_NAME {DATA_DIR}/BASIS_MOLOPT
-    POTENTIAL_FILE_NAME {DATA_DIR}/GTH_POTENTIALS
+    BASIS_SET_FILE_NAME "{data_dir}/BASIS_MOLOPT"
+    POTENTIAL_FILE_NAME "{data_dir}/GTH_POTENTIALS"
     CHARGE 0
     MULTIPLICITY 1
     &QS
@@ -165,7 +165,22 @@ def as_preflight(text: str, project: str) -> str:
 
 
 def main():
-    cell, elements, counts, frac, cart = read_poscar(SOURCE)
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--source", type=Path, required=True, help="820-atom SiO2/oil/water POSCAR (O296 Si48 H452 C24)")
+    parser.add_argument("--out", type=Path, required=True, help="Directory for prepared full/fragment inputs")
+    parser.add_argument("--cp2k-data", type=Path, default=os.environ.get("CP2K_DATA_DIR"), help="Directory containing BASIS_MOLOPT and GTH_POTENTIALS (or set CP2K_DATA_DIR)")
+    args = parser.parse_args()
+    if args.cp2k_data is None:
+        parser.error("provide --cp2k-data or set CP2K_DATA_DIR")
+    source = args.source.resolve()
+    root = args.out.resolve()
+    data_dir = Path(args.cp2k_data).resolve()
+    for name in ("BASIS_MOLOPT", "GTH_POTENTIALS"):
+        if not (data_dir / name).is_file():
+            parser.error(f"missing CP2K data file: {data_dir / name}")
+    if any((root / name).exists() for name in ("ab_full", "a_sio2oil", "b_h2o")):
+        parser.error("output calculation directories already exist; choose a new --out directory")
+    cell, elements, counts, frac, cart = read_poscar(source)
     if elements != ["O", "Si", "H", "C"] or counts != [296, 48, 452, 24]:
         raise RuntimeError(f"Unexpected POSCAR composition: {elements} {counts}")
     offsets = np.cumsum([0] + counts)
@@ -192,24 +207,24 @@ def main():
     a_labels = [f"{element}G" if water[i] else element for i, element in enumerate(atomic_elements)]
     b_labels = [element if water[i] else f"{element}G" for i, element in enumerate(atomic_elements)]
 
-    (ROOT / "ab_full").mkdir(parents=True, exist_ok=False)
-    (ROOT / "a_sio2oil").mkdir(parents=True, exist_ok=False)
-    (ROOT / "b_h2o").mkdir(parents=True, exist_ok=False)
-    shutil.copy2(SOURCE, ROOT / "POSCAR.source")
-    ab_input = make_input("ab_full", full_labels, cart, cell)
-    a_input = make_input("a_sio2oil", a_labels, cart, cell)
-    b_input = make_input("b_h2o", b_labels, cart, cell)
-    (ROOT / "ab_full" / "input.inp").write_text(ab_input)
-    (ROOT / "a_sio2oil" / "input.inp").write_text(a_input)
-    (ROOT / "b_h2o" / "input.inp").write_text(b_input)
-    (ROOT / "preflight.inp").write_text(
+    (root / "ab_full").mkdir(parents=True, exist_ok=False)
+    (root / "a_sio2oil").mkdir(parents=True, exist_ok=False)
+    (root / "b_h2o").mkdir(parents=True, exist_ok=False)
+    shutil.copy2(source, root / "POSCAR.source")
+    ab_input = make_input("ab_full", full_labels, cart, cell, data_dir=data_dir)
+    a_input = make_input("a_sio2oil", a_labels, cart, cell, data_dir=data_dir)
+    b_input = make_input("b_h2o", b_labels, cart, cell, data_dir=data_dir)
+    (root / "ab_full" / "input.inp").write_text(ab_input)
+    (root / "a_sio2oil" / "input.inp").write_text(a_input)
+    (root / "b_h2o" / "input.inp").write_text(b_input)
+    (root / "preflight.inp").write_text(
         make_input("preflight", full_labels, cart, cell, print_density=False,
-                   max_scf=1, ignore_failure=True)
+                   max_scf=1, ignore_failure=True, data_dir=data_dir)
     )
-    (ROOT / "preflight_a_sio2oil.inp").write_text(as_preflight(a_input, "preflight_a"))
-    (ROOT / "preflight_b_h2o.inp").write_text(as_preflight(b_input, "preflight_b"))
+    (root / "preflight_a_sio2oil.inp").write_text(as_preflight(a_input, "preflight_a"))
+    (root / "preflight_b_h2o.inp").write_text(as_preflight(b_input, "preflight_b"))
 
-    with (ROOT / "atom_partition.tsv").open("w") as handle:
+    with (root / "atom_partition.tsv").open("w") as handle:
         handle.write("global_serial\telement\tcomponent\tfull_kind\ta_kind\tb_kind\tx_A\ty_A\tz_A\n")
         for i, (element, xyz) in enumerate(zip(atomic_elements, cart)):
             component = "h2o" if water[i] else "sio2oil"
@@ -217,9 +232,12 @@ def main():
                 f"{i + 1}\t{element}\t{component}\t{full_labels[i]}\t{a_labels[i]}\t"
                 f"{b_labels[i]}\t{xyz[0]:.15f}\t{xyz[1]:.15f}\t{xyz[2]:.15f}\n"
             )
-    source_hash = hashlib.sha256(SOURCE.read_bytes()).hexdigest()
+    source_hash = hashlib.sha256(source.read_bytes()).hexdigest()
     summary = {
+        "source_poscar": str(source),
         "source_sha256": source_hash,
+        "cp2k_data_directory": str(data_dir),
+        "cp2k_data_sha256": {name: hashlib.sha256((data_dir / name).read_bytes()).hexdigest() for name in ("BASIS_MOLOPT", "GTH_POTENTIALS")},
         "method": "CP2K 2026.1 Quickstep GPW PBE",
         "basis": "DZVP-MOLOPT-SR-GTH",
         "potential": "GTH-PBE",
@@ -236,8 +254,8 @@ def main():
         "water_oh_min_A": float(oh[hits].min()),
         "water_oh_max_A": float(oh[hits].max()),
     }
-    (ROOT / "manifest.json").write_text(json.dumps(summary, indent=2) + "\n")
-    (ROOT / "source_sha256.txt").write_text(f"{source_hash}  POSCAR.source\n")
+    (root / "manifest.json").write_text(json.dumps(summary, indent=2) + "\n")
+    (root / "source_sha256.txt").write_text(f"{source_hash}  POSCAR.source\n")
     print(json.dumps(summary, indent=2))
 
 

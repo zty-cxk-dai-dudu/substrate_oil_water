@@ -6,8 +6,8 @@
   },
   {
     "file": "analysis/aimd/caf2/analyze_xin_three_water_orientation.py",
-    "bytes": 12050,
-    "sha256": "18fb778fda9f6e4b2cdee600fc9e04d8c5e28f4622fc9ffcaa5fbbb65cea4085"
+    "bytes": 12730,
+    "sha256": "267696a71e25ea38526979aa5d246cb2abd6f26ccdfe5ed3d5488377bd820e30"
   },
   {
     "file": "analysis/aimd/caf2/export_water_cartesian_xdatcar_last50000.py",
@@ -101,13 +101,13 @@
   },
   {
     "file": "analysis/charge_density/prepare_cp2k.py",
-    "bytes": 8244,
-    "sha256": "afa801e288ad6fc0ef2eed456d2de676a82a93d1c2a353a8bfe417910deafc7f"
+    "bytes": 9545,
+    "sha256": "3ae96af16b8c44bc12d8cf0118b5485f3ce4dbe64da25187934f6969ad03088e"
   },
   {
     "file": "analysis/charge_density/subtract_cubes.py",
-    "bytes": 5366,
-    "sha256": "5a9cc14ea4f2d6ee39a52d74972842146890f4475d5a6a5992e93393c3d7a8ed"
+    "bytes": 5791,
+    "sha256": "cf3bd805b8ba126ec0af8caa8dff6eeb0173e7ce21dd1aedaa7bd3a5ac1185be"
   },
   {
     "file": "analysis/interaction_energy/caf2/O130_O137_O151_interaction/finalize_results.py",
@@ -121,13 +121,38 @@
   },
   {
     "file": "analysis/interaction_energy/caf2/prepare_local_cafyoushui_middle_water3_interaction.py",
-    "bytes": 4773,
-    "sha256": "1bcb57095e84baded0de2ca22d3171b748160460e6e7ff03b79160926a25f70f"
+    "bytes": 5725,
+    "sha256": "7f2e2929552dd1a33c7b45c331e0366496e64ddb29fdf245c42d6dc0c9d01a83"
+  },
+  {
+    "file": "analysis/interaction_energy/caf2/run_local_cafyoushui_middle_water3_interaction.sh",
+    "bytes": 3295,
+    "sha256": "e5dea5b0aeba006fa8266ff8c58856cd62922979079fdfa3268250ac5db47402"
+  },
+  {
+    "file": "analysis/interaction_energy/finalize_local_cafyoushui_middle_water3_interaction.py",
+    "bytes": 3078,
+    "sha256": "535722a7ae0054af6d85e199aff60f4608eb1f9cf447c5b67bce2cf5b88f8a80"
+  },
+  {
+    "file": "analysis/interaction_energy/finalize_remote_every4A_3each_interaction.py",
+    "bytes": 4749,
+    "sha256": "f9008daff5a3c253142e4d648745a4cc2150292860d99b82205f3e89bdd66378"
   },
   {
     "file": "analysis/interaction_energy/oil_water/prepare_local_feiguding_middle_water3_interaction.py",
-    "bytes": 4763,
-    "sha256": "7d8a3206acb82423580d52bffbf8a76994ac2389c61e563827cc5d64fa3aa763"
+    "bytes": 5643,
+    "sha256": "6ca3fb7c3b7ae6f80863c00e6fb0bad256114e006cb9d6378b29b98d1e91719e"
+  },
+  {
+    "file": "analysis/interaction_energy/oil_water/run_local_feiguding_middle_water3_interaction.sh",
+    "bytes": 3295,
+    "sha256": "d24f5a36eebcea00e9640ab34ba16b37657b2fd467dc8f3fbe7e6d8a6f9ad0a2"
+  },
+  {
+    "file": "analysis/interaction_energy/prepare_remote_every4A_3each_interaction.py",
+    "bytes": 13802,
+    "sha256": "ae3590a6c23d180a7b3abac98831b8e1617ef1f574402f18af89be7aaa334f79"
   },
   {
     "file": "analysis/interaction_energy/summarize_interactions.py",
@@ -136,13 +161,13 @@
   },
   {
     "file": "analysis/model_validation/compute_rdf_compare.py",
-    "bytes": 17667,
-    "sha256": "fcf55aa59c5ea11e2028212bf980668680087d63e9dbdd177d0bdc464009e9cd"
+    "bytes": 18426,
+    "sha256": "7d01304f5df396204351446e5db89d349e39b89706e785d41bcd9e22d9be3a0c"
   },
   {
     "file": "analysis/model_validation/mace_parity.py",
-    "bytes": 12111,
-    "sha256": "24c4048477dea59692945dc55294f1efe838a892098e330799bebf86530ae1ae"
+    "bytes": 13543,
+    "sha256": "af962ddf75544ecb023ff9ae7dd8b173e74d5f37ec38b9b59e9f90e8fac4dfb7"
   },
   {
     "file": "analysis/oil_motion/analyze_three_system_hexane_fluctuations.py",
@@ -241,8 +266,8 @@
   },
   {
     "file": "analysis/water_dynamics/export_vdos_no_gaussian_two_parts.py",
-    "bytes": 6131,
-    "sha256": "8b0ecc4de846e82967c0e007d751ae70f0c3a8b6922016fd411f3989b5912d56"
+    "bytes": 6530,
+    "sha256": "7a8e4201fee164a85b8773f48c94878db36d9a18195121510a23c2ceb3a4fca5"
   },
   {
     "file": "analysis/water_dynamics/normalize_ax2_lammps_500ps.py",
@@ -255,38 +280,48 @@
     "sha256": "627ed090c992bc415bd2dbb661a927b9c2154c02e3c34ee38487bf21cde33f7f"
   },
   {
+    "file": "simulation/mace/compress_caf2_h5_segment.py",
+    "bytes": 1888,
+    "sha256": "667918d617d3ecc0fe3b19a056443b3fa596e2390d98dbc25ee1c9068d3fe3bb"
+  },
+  {
     "file": "simulation/mace/prepare_caf2_ax2_vac5.py",
-    "bytes": 1158,
-    "sha256": "4f94c32527190d2883336ade635626db61784b6fc97e3fe58c597a635bb2c972"
+    "bytes": 1671,
+    "sha256": "22dfaa7009cd1dc2c628f4ee21f3008cc455abca803c3af84839390ed746e9fc"
   },
   {
     "file": "simulation/mace/run_caf2_ax2_vac5_cueq_500ps.py",
-    "bytes": 17688,
-    "sha256": "cc38550c6c63720481b56d75898bf869a909c8966be81450ae4a00e20e687483"
+    "bytes": 17692,
+    "sha256": "1d50e4e72b55d105b055eb812550571a4eff6620be92ae920aa489a841439328"
   },
   {
     "file": "simulation/mace/run_caf2_ax2_vac5_cueq_500ps_async.py",
-    "bytes": 20198,
-    "sha256": "65af81c5c2baa9324228b5b0dd3c87558fee03ad228df10669cfa9cf38e7f55b"
+    "bytes": 20202,
+    "sha256": "e45ac25205eb209d3935d23304914f3d2f34c34fd286f77dc8ac9f54ded05c26"
   },
   {
     "file": "simulation/mace/run_mace_cueq_md.py",
-    "bytes": 557,
-    "sha256": "c1099e13eba704af815909818614644c4995b04631bd47d3052148ccfdc3577e"
+    "bytes": 199,
+    "sha256": "a77c81e95714719086c35dc50f3993fd5ec2168c806ca91198a649b5af57ce15"
   },
   {
     "file": "simulation/mace/run_mace_md100ps.py",
-    "bytes": 8909,
-    "sha256": "986dba9a80d6c7bc1a0112fc8e4efb67b23208d20bc371dc55dd6981eef3c8f0"
+    "bytes": 8913,
+    "sha256": "5ae353c3e81d05657a48bd6aa69d97164f108b5b6c7514ed3e8917c61abf0cae"
   },
   {
     "file": "simulation/mace/run_mace_md500ps_vdos_h5.py",
-    "bytes": 16920,
-    "sha256": "ad94882f734297c6d07ff15836c4f23dfc8555a0e3ce910954732153be15bf94"
+    "bytes": 16924,
+    "sha256": "1a597a5167926f707b443e31d08d9c6a9a6334312b5da41fc020f217b7c0a819"
+  },
+  {
+    "file": "simulation/mace/run_mace_nvt500ps_velocity_h5.py",
+    "bytes": 10295,
+    "sha256": "55b235fbd0995db498d497638087b5304280715579af08b5ad6f14b412b0dc22"
   },
   {
     "file": "simulation/mace/run_train.sh",
-    "bytes": 1124,
-    "sha256": "9fdc32a58d3ec09902e53c2de54748e590f7fc8a68c63dfa01b1d95401111a82"
+    "bytes": 2827,
+    "sha256": "772383aea72a60ffd2546bb05fd86369502b5d1d6b3787f4e4cca42a944b0d51"
   }
 ]

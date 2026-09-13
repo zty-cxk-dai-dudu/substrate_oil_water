@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 from pathlib import Path
@@ -11,24 +12,6 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
-
-
-ROOT = Path(__file__).resolve().parent
-OUT_ROOT = ROOT / "vdos_no_gaussian_two_parts_20260810"
-SYSTEMS = (
-    {
-        "source": ROOT / "caf2_ax2_prl_dipole_vdos_500ps_mloong_20260809" / "vdos_4A_from_interface",
-        "output": OUT_ROOT / "caf2",
-        "frequency_shift_cm-1": 0.0,
-        "xmax": 4000.0,
-    },
-    {
-        "source": ROOT / "oil_water_b2_pc_angew_S6_strict_500ps_20260808" / "vdos_4A_from_oil_500ps",
-        "output": OUT_ROOT / "oil_water",
-        "frequency_shift_cm-1": 80.0,
-        "xmax": 4080.0,
-    },
-)
 
 
 mpl.rcParams.update(
@@ -147,7 +130,7 @@ def export_system(config: dict) -> None:
     plt.close(fig)
 
     metadata = {
-        "source_directory": str(source.relative_to(ROOT)),
+        "source_directory": str(source.resolve()),
         "spectrum": "50-block mean Blackman velocity PSD without Gaussian smoothing",
         "normalization": "each layer divided by its own unsmoothed maximum over the plotted 1200-end range",
         "frequency_shift_cm-1": shift,
@@ -170,9 +153,21 @@ def export_system(config: dict) -> None:
 
 
 def main() -> None:
-    for config in SYSTEMS:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--caf2-source", type=Path, required=True, help="CaF2 layer_summary.csv and vdos_<column>.csv directory")
+    parser.add_argument("--oil-water-source", type=Path, required=True, help="Oil/water layer_summary.csv and vdos_<column>.csv directory")
+    parser.add_argument("--out", type=Path, required=True, help="Output root for caf2 and oil_water subdirectories")
+    args = parser.parse_args()
+    for source in (args.caf2_source, args.oil_water_source):
+        if not (source / "layer_summary.csv").is_file():
+            parser.error(f"missing layer summary: {source / 'layer_summary.csv'}")
+    systems = (
+        {"source": args.caf2_source, "output": args.out / "caf2", "frequency_shift_cm-1": 0.0, "xmax": 4000.0},
+        {"source": args.oil_water_source, "output": args.out / "oil_water", "frequency_shift_cm-1": 80.0, "xmax": 4080.0},
+    )
+    for config in systems:
         export_system(config)
-    print(OUT_ROOT)
+    print(args.out)
 
 
 if __name__ == "__main__":

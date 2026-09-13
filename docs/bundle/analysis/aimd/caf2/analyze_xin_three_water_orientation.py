@@ -11,6 +11,7 @@ the range 0--180 degrees.
 
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 import math
@@ -23,10 +24,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-ROOT = Path("/home/pc/桌面/msxiugai/youshui20nm/xin")
-XDATCAR = ROOT / "XDATCAR"
-SELECTED = ROOT / "middle_water3_interaction" / "selected_waters.tsv"
-OUT = ROOT / "middle_water3_xy_yz_radial_orientation"
 POTIM_FS = 1.0
 
 
@@ -88,7 +85,7 @@ def frac_minimum_image(delta):
     return delta - np.round(delta)
 
 
-def analyze_one(water, frames, cell):
+def analyze_one(water, frames, cell, potim_fs=POTIM_FS):
     rows = []
     prev_o = None
     unwrapped_o = None
@@ -133,7 +130,7 @@ def analyze_one(water, frames, cell):
             "H2_serial": water["H2"],
             "frame_index": frame_index,
             "configuration": config,
-            "time_ps_relative": (frame_index - 1) * POTIM_FS / 1000.0,
+            "time_ps_relative": (frame_index - 1) * potim_fs / 1000.0,
             "O_x_A": ou_cart[0], "O_y_A": ou_cart[1], "O_z_A": ou_cart[2],
             "O_x_wrapped_A": o_cart[0], "O_y_wrapped_A": o_cart[1], "O_z_wrapped_A": o_cart[2],
             "H1_x_A": h1_cart[0], "H1_y_A": h1_cart[1], "H1_z_A": h1_cart[2],
@@ -155,7 +152,7 @@ def write_csv(path, rows, delimiter=","):
         writer.writerows(rows)
 
 
-def plot_trajectories(all_rows, waters):
+def plot_trajectories(all_rows, waters, out):
     fig, axes = plt.subplots(3, 2, figsize=(11.0, 13.0), constrained_layout=True)
     for i, water in enumerate(waters):
         rows = [r for r in all_rows if r["water_rank"] == water["rank"]]
@@ -183,11 +180,11 @@ def plot_trajectories(all_rows, waters):
             cb = fig.colorbar(sc, ax=ax, pad=0.01)
             cb.set_label("time from first stored frame (ps)")
     for ext in ("png", "svg"):
-        fig.savefig(OUT / f"three_water_XY_YZ_trajectories.{ext}", dpi=300 if ext == "png" else None)
+        fig.savefig(out / f"three_water_XY_YZ_trajectories.{ext}", dpi=300 if ext == "png" else None)
     plt.close(fig)
 
 
-def plot_angles(all_rows, waters):
+def plot_angles(all_rows, waters, out):
     fig, axes = plt.subplots(3, 1, figsize=(11.0, 9.0), sharex=True, constrained_layout=True)
     for ax, water in zip(axes, waters):
         rows = [r for r in all_rows if r["water_rank"] == water["rank"]]
@@ -203,20 +200,31 @@ def plot_angles(all_rows, waters):
         ax.legend(frameon=False, ncol=2, fontsize=8)
     axes[-1].set_xlabel("time from first stored frame (ps)")
     for ext in ("png", "svg"):
-        fig.savefig(OUT / f"three_water_radial_orientation_vs_time.{ext}", dpi=300 if ext == "png" else None)
+        fig.savefig(out / f"three_water_radial_orientation_vs_time.{ext}", dpi=300 if ext == "png" else None)
     plt.close(fig)
 
 
 def main():
-    OUT.mkdir(parents=True, exist_ok=True)
-    waters = read_selected(SELECTED)
-    title, cell, species, counts, frames = parse_xdatcar(XDATCAR, waters)
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--xdatcar", type=Path, required=True, help="XDATCAR with one stored frame per MD step")
+    parser.add_argument("--selected", type=Path, required=True, help="TSV with rank, O_serial, H1_serial and H2_serial for three waters")
+    parser.add_argument("--out", type=Path, required=True, help="Output directory")
+    parser.add_argument("--potim-fs", type=float, default=POTIM_FS, help="MD timestep in fs (default: 1.0)")
+    args = parser.parse_args()
+    if not math.isfinite(args.potim_fs) or args.potim_fs <= 0:
+        parser.error("--potim-fs must be positive and finite")
+    waters = read_selected(args.selected)
+    if len(waters) != 3:
+        parser.error("--selected must contain exactly three waters")
+    title, cell, species, counts, frames = parse_xdatcar(args.xdatcar, waters)
+    out = args.out
+    out.mkdir(parents=True, exist_ok=True)
     all_rows = []
     summaries = []
     for water in waters:
-        rows = analyze_one(water, frames, cell)
+        rows = analyze_one(water, frames, cell, args.potim_fs)
         all_rows.extend(rows)
-        write_csv(OUT / f'{water["label"]}_trajectory_orientation.csv', rows)
+        write_csv(out / f'{water["label"]}_trajectory_orientation.csv', rows)
         theta = np.array([r["theta_radial_deg"] for r in rows])
         xyz = np.array([[r["O_x_A"], r["O_y_A"], r["O_z_A"]] for r in rows])
         path_length = float(np.linalg.norm(np.diff(xyz, axis=0), axis=1).sum())
@@ -229,16 +237,16 @@ def main():
             "max_theta_radial_deg": float(np.nanmax(theta)),
             "O_path_length_A": path_length,
         })
-    write_csv(OUT / "source_data_all_waters.csv", all_rows)
-    write_csv(OUT / "orientation_summary.tsv", summaries, delimiter="\t")
-    plot_trajectories(all_rows, waters)
-    plot_angles(all_rows, waters)
+    write_csv(out / "source_data_all_waters.csv", all_rows)
+    write_csv(out / "orientation_summary.tsv", summaries, delimiter="\t")
+    plot_trajectories(all_rows, waters, out)
+    plot_angles(all_rows, waters, out)
     metadata = {
-        "source_xdatcar": str(XDATCAR), "source_selected_waters": str(SELECTED),
+        "source_xdatcar": str(args.xdatcar.resolve()), "source_selected_waters": str(args.selected.resolve()),
         "title": title, "species": species, "counts": counts,
         "cell_A": cell.tolist(), "n_frames": len(frames),
         "first_configuration": frames[0][0], "last_configuration": frames[-1][0],
-        "POTIM_fs": POTIM_FS, "frame_stride_steps": 1,
+        "POTIM_fs": args.potim_fs, "frame_stride_steps": 1,
         "relative_time_definition": "(frame_index - 1) * POTIM / 1000 ps",
         "oxygen_unwrapping": "minimum-image fractional displacement between consecutive frames",
         "hydrogen_reconstruction": "each H in nearest periodic image around its O in every frame",
@@ -247,8 +255,8 @@ def main():
         "theta_radial_definition": "arccos(mu_hat dot radial_hat), degrees, range 0-180",
         "trajectory_plot": "continuously unwrapped O path; arrows show projected O-to-H-midpoint unit vector",
     }
-    (OUT / "metadata.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n")
-    (OUT / "README.md").write_text(
+    (out / "metadata.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n")
+    (out / "README.md").write_text(
         "# Three middle-water trajectory and radial-orientation analysis\n\n"
         "The oxygen trajectory is continuously unwrapped using minimum-image fractional increments. "
         "Each hydrogen is rebuilt in the nearest image around its oxygen. The molecular orientation "
@@ -256,7 +264,7 @@ def main():
         "the xy cell center to the oxygen. `theta_radial_deg = acos(mu_hat dot radial_hat)`; 0 degrees "
         "points outward and 180 degrees points inward. Time is relative to the first stored XDATCAR frame.\n"
     )
-    print(json.dumps({"out": str(OUT), "n_frames": len(frames), "waters": waters}, ensure_ascii=False))
+    print(json.dumps({"out": str(out), "n_frames": len(frames), "waters": waters}, ensure_ascii=False))
 
 
 if __name__ == "__main__":

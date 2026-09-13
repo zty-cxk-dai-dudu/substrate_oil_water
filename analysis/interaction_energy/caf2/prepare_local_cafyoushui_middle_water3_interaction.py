@@ -2,22 +2,34 @@
 """Prepare local interaction-energy jobs for three middle-layer waters."""
 
 from pathlib import Path
+import argparse
 import hashlib
 import math
 import shutil
+import sys
 
+SCRIPT_DIR = Path(__file__).resolve().parent
+sys.path.insert(0, str(SCRIPT_DIR.parent))
 import prepare_remote_every4A_3each_interaction as common
 
 
-SCRIPT_DIR = Path(__file__).resolve().parent
-ROOT = SCRIPT_DIR.parent
-SOURCE = ROOT / "CONTCAR"
-OUT = ROOT / "middle_water3_interaction"
 EXPECTED_SPECIES = ("H", "C", "O", "F", "Ca")
 EXPECTED_COUNTS = (108, 12, 40, 16, 8)
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--source", type=Path, required=True, help="CONTCAR with the original atom order")
+    parser.add_argument("--output", type=Path, required=True, help="New calculation directory")
+    parser.add_argument("--potcar", type=Path, help="Author-supplied POTCAR; default: beside --source")
+    parser.add_argument("--kpoints", type=Path, help="KPOINTS; default: beside --source")
+    parser.add_argument("--source-label", help="Frame label recorded with the source checksum")
+    args = parser.parse_args()
+    SOURCE, OUT = args.source.resolve(), args.output.resolve()
+    ROOT = SOURCE.parent
+    kpoints = args.kpoints.resolve() if args.kpoints else ROOT / "KPOINTS"
+    if not kpoints.is_file():
+        raise FileNotFoundError(kpoints)
     if OUT.exists():
         raise RuntimeError(f"Refusing to overwrite existing directory: {OUT}")
     lattice, species, counts, coords = common.read_poscar(SOURCE)
@@ -41,7 +53,7 @@ def main():
     if [row[0] + 1 for row in selected] != expected_serials:
         raise RuntimeError(f"Unexpected selected O atoms: {[row[0] + 1 for row in selected]}")
 
-    potcars = common.split_potcar(ROOT / "POTCAR", species)
+    potcars = common.split_potcar(args.potcar.resolve() if args.potcar else ROOT / "POTCAR", species)
     incar = """SYSTEM = COMPONENT
 ISTART = 0
 ICHARG = 2
@@ -65,11 +77,11 @@ LWAVE = .FALSE.
 NCORE = 6
 """
 
-    OUT.mkdir()
+    OUT.mkdir(parents=True)
     all_indices = list(range(sum(counts)))
     common.write_calc(
         OUT / "ab_full", "ab_full", species, counts, all_indices,
-        lattice, coords, potcars, incar, ROOT,
+        lattice, coords, potcars, incar, ROOT, kpoints=kpoints,
     )
     a_counts = list(counts)
     a_counts[species.index("H")] -= 2
@@ -83,11 +95,11 @@ NCORE = 6
         b_indices = [h1, h2, oxygen]
         common.write_calc(
             water_dir / "a_without_water", f"a_without_O{oxygen + 1}", species,
-            tuple(a_counts), a_indices, lattice, coords, potcars, incar, ROOT,
+            tuple(a_counts), a_indices, lattice, coords, potcars, incar, ROOT, kpoints=kpoints,
         )
         common.write_calc(
             water_dir / "b_single_water", f"b_O{oxygen + 1}", ("H", "O"),
-            (2, 1), b_indices, lattice, coords, potcars, incar, ROOT,
+            (2, 1), b_indices, lattice, coords, potcars, incar, ROOT, kpoints=kpoints,
         )
         rows.append("\t".join((
             str(rank), str(oxygen + 1), str(h1 + 1), str(h2 + 1),
@@ -98,13 +110,13 @@ NCORE = 6
         "source\twater_O_count\tcell_z_A\twater_z_min_unwrapped_A\t"
         "water_z_max_unwrapped_A\twater_layer_thickness_A\twater_layer_middle_unwrapped_A\t"
         "water_layer_middle_mod_cell_A\tlargest_empty_z_gap_A\n"
-        f"CONTCAR\t{len(pairs)}\t{length_z:.6f}\t{layer_low:.6f}\t{layer_high:.6f}\t"
+        f"{args.source_label or SOURCE.name}\t{len(pairs)}\t{length_z:.6f}\t{layer_low:.6f}\t{layer_high:.6f}\t"
         f"{layer_high - layer_low:.6f}\t{middle:.6f}\t{middle % length_z:.6f}\t{largest_gap:.6f}\n"
     )
     digest = hashlib.sha256(SOURCE.read_bytes()).hexdigest()
     (OUT / "README.md").write_text(
         "# Three waters closest to the water-layer middle\n\n"
-        f"Source: `../CONTCAR`, SHA-256 `{digest}`. All 40 water molecules were identified "
+        f"Source: `{args.source_label or SOURCE}`, SHA-256 `{digest}`. All 40 water molecules were identified "
         "with minimum-image O-H distances. The periodic water layer was unwrapped by cutting "
         "at its largest empty z gap.\n\n"
         "Only interaction energies are calculated: `E_int = E_ab - E_a - E_b`; charge "
@@ -112,7 +124,7 @@ NCORE = 6
     )
     shutil.copy2(SCRIPT_DIR / "run_local_cafyoushui_middle_water3_interaction.sh", OUT / "run_all.sh")
     shutil.copy2(
-        SCRIPT_DIR / "finalize_local_cafyoushui_middle_water3_interaction.py",
+        SCRIPT_DIR.parent / "finalize_local_cafyoushui_middle_water3_interaction.py",
         OUT / "finalize_results.py",
     )
     print("Selected:", [

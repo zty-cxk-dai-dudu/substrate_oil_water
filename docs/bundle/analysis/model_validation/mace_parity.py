@@ -9,6 +9,7 @@ failure is written to trajectory_provenance.json instead.
 """
 from __future__ import annotations
 
+import argparse
 import csv
 import hashlib
 import json
@@ -21,7 +22,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from ase.io import read
 import h5py
-from mace.calculators import MACECalculator
 
 
 ROOT = Path(__file__).resolve().parent
@@ -98,6 +98,8 @@ def read_reference(atoms):
 
 
 def evaluate_system(key: str, spec: dict) -> dict:
+    from mace.calculators import MACECalculator
+
     frames = read(spec["validation"], index=":")
     calc = MACECalculator(model_paths=str(spec["model"]), device="cuda", default_dtype="float32")
     ref_e, pred_e = [], []
@@ -240,6 +242,29 @@ def audit_trajectory(key, spec):
 
 
 def main():
+    global ROOT, OUT, SYSTEMS
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--source-root", type=Path, required=True, help="Directory containing the original MACE validation and trajectory subdirectories")
+    parser.add_argument("--out", type=Path, required=True, help="Output directory")
+    parser.add_argument("--oil-model", type=Path, help="Override the oil/water model path")
+    parser.add_argument("--caf2-model", type=Path, help="Override the CaF2 model path")
+    parser.add_argument("--oil-validation", type=Path, help="Override the oil/water validation extxyz path")
+    parser.add_argument("--caf2-validation", type=Path, help="Override the CaF2 validation extxyz path")
+    args = parser.parse_args()
+    old_root = ROOT
+    ROOT = args.source_root.resolve()
+    OUT = args.out.resolve()
+    SYSTEMS = {
+        key: {name: ROOT / value.relative_to(old_root) if isinstance(value, Path) else value for name, value in spec.items()}
+        for key, spec in SYSTEMS.items()
+    }
+    for key, prefix in (("youshui", "oil"), ("caf2", "caf2")):
+        for name in ("model", "validation"):
+            override = getattr(args, f"{prefix}_{name}")
+            if override is not None:
+                SYSTEMS[key][name] = override.resolve()
+            if not SYSTEMS[key][name].is_file():
+                parser.error(f"missing {key} {name}: {SYSTEMS[key][name]}")
     OUT.mkdir(parents=True, exist_ok=True)
     results = {}
     for key, spec in SYSTEMS.items():

@@ -20,7 +20,6 @@ from ase import units
 from ase.io import read, write
 from ase.md.nose_hoover_chain import NoseHooverChainNVT
 from ase.md.velocitydistribution import MaxwellBoltzmannDistribution, Stationary
-from mace.calculators import MACECalculator
 
 
 Z_TO_TYPE = {1: 1, 6: 2, 8: 3, 9: 4, 20: 5}
@@ -174,6 +173,7 @@ class GuardedRun:
 
 def main():
     args = parse_args()
+    from mace.calculators import MACECalculator
     output = Path(args.output).resolve()
     output.mkdir(parents=True, exist_ok=True)
     atoms = read(args.structure, format="lammps-data", style="atomic", Z_of_type=Z_OF_TYPE)

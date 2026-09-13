@@ -1,17 +1,18 @@
-plugin load     /home/zty/miniconda3/envs/deepmd/lib/libdeepmd_lmp.so
+# Supply deepmd_plugin, structure and model with LAMMPS -var options.
+plugin load     "${deepmd_plugin}"
 
 units           metal
 boundary        p p p
 atom_style      atomic
 atom_modify     map yes
-read_data       ../ax2_500ps_sio2_fixed_20260809/conf_input_ax1.lmp
+read_data       "${structure}"
 replicate       2 1 1
 
 mass            1 15.999
 mass            2 28.085
 mass            3 1.008
 mass            4 12.011
-pair_style      deepmd models/sio2/graph.pb
+pair_style      deepmd "${model}"
 pair_coeff      * *
 neighbor        1.0 bin
 neigh_modify    every 1 delay 0 check yes one 40000 page 400000

@@ -7,6 +7,7 @@ to the instantaneous box volume with the usual pair-count convention.
 """
 from __future__ import annotations
 
+import argparse
 import json
 import re
 from pathlib import Path
@@ -16,16 +17,6 @@ mpl.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-
-ROOT = Path(__file__).resolve().parents[1]
-OUT = Path(__file__).resolve().parent
-ML_PATH = ROOT / "md/1ns/ax1_100ps_sio2fixed_newmodel_chcorrect50k_unstable_scan_20260811/positions.100ps.ax1.sio2fixed.chcorrect50k.1fs.lammpstrj"
-AIMD_PATH = ROOT / "source_raw/1-pos-1.xyz"
-CELL_PATH = ROOT / "source_raw/1.cell"
-MODEL_PATH = ROOT / "active_learning_chcorrect_aimd500_continue50k_w0p2_20260810/training_50k/selected_model/graph-compress-selected.pb"
-SELECTION_JSON = ROOT / "active_learning_chcorrect_aimd500_continue50k_w0p2_20260810/training_50k/model_selection.json"
-NEW_TEST_LOG = ROOT / "active_learning_chcorrect_aimd500_continue50k_w0p2_20260810/training_50k/selected_model/test_ch_compressed.log"
-OLD_TEST_LOG = ROOT / "active_learning_chcorrect_aimd500_continue50k_w0p2_20260810/training_50k/test_final_old.log"
 
 NATOMS = 410
 BOX = np.array([9.9130, 8.5048, 73.7289], dtype=float)
@@ -162,9 +153,29 @@ def analyze(label: str, frames, nframes: int, selected: set[int]):
 
 
 def main():
-    OUT.mkdir(parents=True, exist_ok=True)
-    n_ml = count_lammps_frames(ML_PATH)
-    n_aimd = count_xyz_frames(AIMD_PATH)
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--ml-trajectory", type=Path, required=True, help="410-atom ML LAMMPS dump with 1 fs frame spacing")
+    parser.add_argument("--aimd-trajectory", type=Path, required=True, help="410-atom CP2K position XYZ")
+    parser.add_argument("--model", type=Path, required=True, help="DeePMD model used for these trajectories and test logs")
+    parser.add_argument("--model-sha256-file", type=Path, required=True, help="Original model SHA-256 record")
+    parser.add_argument("--selection-json", type=Path, required=True, help="Model selection record with selected_step and selected_metrics")
+    parser.add_argument("--new-test-log", type=Path, required=True, help="dp test output for the new CH validation set")
+    parser.add_argument("--old-test-log", type=Path, required=True, help="dp test output for the original validation set")
+    parser.add_argument("--energy-file", type=Path, required=True, help="Two-column DFT/ML total energies from dp test")
+    parser.add_argument("--force-file", type=Path, required=True, help="Six-column DFT/ML Cartesian forces from dp test")
+    parser.add_argument("--out", type=Path, required=True, help="Output directory")
+    args = parser.parse_args()
+    for name, value in vars(args).items():
+        if name != "out" and not value.is_file():
+            parser.error(f"missing input --{name.replace('_', '-')}: {value}")
+    out = args.out.resolve()
+    n_ml = count_lammps_frames(args.ml_trajectory)
+    n_aimd = count_xyz_frames(args.aimd_trajectory)
+    if n_ml <= 20000:
+        parser.error("ML trajectory must extend beyond the fixed 20 ps equilibration interval")
+    if n_aimd == 0:
+        parser.error("AIMD trajectory has no frames")
+    out.mkdir(parents=True, exist_ok=True)
     # Exclude the first 20 ps of the ML run as equilibration; AIMD source is already
     # a continuous equilibrated CP2K segment (12.031--62.460 ps).
     ml_steps = np.arange(n_ml)
@@ -177,12 +188,12 @@ def main():
     symbols_current = [None]
 
     def ml_frames():
-        for item in iter_lammps(ML_PATH, ml_selected):
+        for item in iter_lammps(args.ml_trajectory, ml_selected):
             symbols_current[0] = item[2]
             yield item
 
     def aimd_frames():
-        for item in iter_xyz(AIMD_PATH, aimd_selected):
+        for item in iter_xyz(args.aimd_trajectory, aimd_selected):
             symbols_current[0] = item[2]
             yield item
 
@@ -197,18 +208,18 @@ def main():
 
     data = {
         "system": "410-atom AX1 SiO2/oil/water interface",
-        "model": str(MODEL_PATH),
+        "model": str(args.model),
         "cell_A": BOX.tolist(),
         "rmax_A": RMAX,
         "dr_A": DR,
         "normalization": "3D periodic shell-volume normalization; unique pairs for same species and all cross pairs for unlike species",
         "pairs": [f"{a}-{b}" for a, b in PAIRS],
-        "ML": {"trajectory": str(ML_PATH), "all_frames": n_ml, "sample_rule": "1000 uniformly spaced frames from 20--100 ps", **ml_res},
-        "AIMD": {"trajectory": str(AIMD_PATH), "all_frames": n_aimd, "sample_rule": "1000 uniformly spaced frames from source (12.031--62.460 ps)", **aimd_res},
+        "ML": {"trajectory": str(args.ml_trajectory), "all_frames": n_ml, "sample_rule": "1000 uniformly spaced frames from 20--100 ps", **ml_res},
+        "AIMD": {"trajectory": str(args.aimd_trajectory), "all_frames": n_aimd, "sample_rule": "1000 uniformly spaced frames from source (12.031--62.460 ps)", **aimd_res},
     }
-    (OUT / "rdf_ml_aimd_summary.json").write_text(json.dumps(data, indent=2))
+    (out / "rdf_ml_aimd_summary.json").write_text(json.dumps(data, indent=2))
 
-    csv = OUT / "rdf_ml_aimd_curves.csv"
+    csv = out / "rdf_ml_aimd_curves.csv"
     with csv.open("w") as fh:
         fh.write("r_A,pair,ML_g,ML_sem,AIMD_g,AIMD_sem,difference_ML_minus_AIMD\n")
         for i, rr in enumerate(R):
@@ -219,7 +230,7 @@ def main():
                 ms = ml_res["curves"][key]["sem"][i]
                 ass = aimd_res["curves"][key]["sem"][i]
                 fh.write(f"{rr:.5f},{key},{mg:.10g},{ms:.10g},{ag:.10g},{ass:.10g},{mg-ag:.10g}\n")
-    with (OUT / "rdf_peak_comparison.csv").open("w") as fh:
+    with (out / "rdf_peak_comparison.csv").open("w") as fh:
         fh.write("pair,ML_peak_r_A,ML_peak_g,AIMD_peak_r_A,AIMD_peak_g,curve_RMSE_0_4p2\n")
         peak_mask = (R >= 0.5) & (R <= 4.0)
         for a, b in PAIRS:
@@ -255,7 +266,7 @@ def main():
     axes[-1].legend(frameon=False, loc="upper right", handlelength=2.2)
     fig.suptitle("Final-model ML versus CP2K AIMD partial RDFs", fontsize=10, y=1.02)
     fig.tight_layout(pad=0.7, w_pad=0.8)
-    stem = OUT / "rdf_ml_aimd_final_model"
+    stem = out / "rdf_ml_aimd_final_model"
     fig.savefig(stem.with_suffix(".png"), dpi=600, bbox_inches="tight")
     fig.savefig(stem.with_suffix(".tiff"), dpi=600, bbox_inches="tight")
     fig.savefig(stem.with_suffix(".svg"), bbox_inches="tight")
@@ -264,7 +275,7 @@ def main():
 
     # Validation metrics: direct dp test logs are the primary reported values;
     # the selection record is retained as the auditable candidate-selection context.
-    selection = json.loads(SELECTION_JSON.read_text())
+    selection = json.loads(args.selection_json.read_text())
     def parse_dp_test(path: Path):
         text = path.read_text()
         def grab(pattern):
@@ -281,17 +292,17 @@ def main():
         }
     metrics = {
         "selected_step": selection["selected_step"],
-        "model": str(MODEL_PATH),
-        "direct_dp_test": {"new_CH_validation": parse_dp_test(NEW_TEST_LOG), "old_validation": parse_dp_test(OLD_TEST_LOG)},
+        "model": str(args.model),
+        "direct_dp_test": {"new_CH_validation": parse_dp_test(args.new_test_log), "old_validation": parse_dp_test(args.old_test_log)},
         "new_CH_validation": {k: v for k, v in selection["selected_metrics"].items() if k.startswith("ch_")},
         "old_validation": {k: v for k, v in selection["selected_metrics"].items() if k.startswith("old_")},
-        "selected_model_sha256": (MODEL_PATH.parent / "model.sha256").read_text().strip(),
+        "selected_model_sha256": args.model_sha256_file.read_text().strip(),
     }
-    (OUT / "final_model_validation_rmse.json").write_text(json.dumps(metrics, indent=2))
+    (out / "final_model_validation_rmse.json").write_text(json.dumps(metrics, indent=2))
 
     # DFT-versus-ML validation parity curves (main 1668-frame validation set).
-    energy_file = ROOT / "active_learning_chcorrect_aimd500_continue50k_w0p2_20260810/training_50k/final_old.e.out"
-    force_file = ROOT / "active_learning_chcorrect_aimd500_continue50k_w0p2_20260810/training_50k/final_old.f.out"
+    energy_file = args.energy_file
+    force_file = args.force_file
     energy = np.loadtxt(energy_file, comments="#") / NATOMS
     force = np.loadtxt(force_file, comments="#").reshape(-1, 6)
 
@@ -324,13 +335,13 @@ def main():
         ax.legend(frameon=False, fontsize=6.5, loc="lower right")
         ax.text(0.04, 0.96, f"$R^2$ = {r2:.5f}\nRMSE = {rmse:.4g} {unit}\nFit: y = {slope:.4f}x {intercept:+.4g}", transform=ax.transAxes, va="top", fontsize=6.8, bbox={"facecolor": "white", "edgecolor": "#BBBBBB", "linewidth": 0.5, "alpha": 0.9, "pad": 3})
         fig.tight_layout(pad=0.5)
-        stem = OUT / stem_name
+        stem = out / stem_name
         fig.savefig(stem.with_suffix(".png"), dpi=600, bbox_inches="tight")
         fig.savefig(stem.with_suffix(".tiff"), dpi=600, bbox_inches="tight")
         fig.savefig(stem.with_suffix(".svg"), bbox_inches="tight")
         fig.savefig(stem.with_suffix(".pdf"), bbox_inches="tight")
         plt.close(fig)
-        np.savetxt(OUT / f"{stem_name}_data.txt", np.column_stack([ref, pred]), header=f"DFT_{unit.replace('/', '_per_')} ML_{unit.replace('/', '_per_')}")
+        np.savetxt(out / f"{stem_name}_data.txt", np.column_stack([ref, pred]), header=f"DFT_{unit.replace('/', '_per_')} ML_{unit.replace('/', '_per_')}")
         return {"n": int(len(ref)), "r2": float(r2), "rmse": float(rmse), "bias": float(bias), "slope": float(slope), "intercept": float(intercept)}
 
     # Subtract one common DFT mean only for readable axes; this preserves every
@@ -347,8 +358,8 @@ def main():
         "ML_minus_DFT_bias_removed_eV_per_atom": energy_bias,
         "correction_applied": "E_ML_corrected = E_ML_raw - mean(E_ML_raw - E_DFT)",
     })
-    (OUT / "linear_parity_metrics.json").write_text(json.dumps(parity_metrics, indent=2))
-    print(json.dumps({"ML_frames": n_ml, "AIMD_frames": n_aimd, "ML_sampled": len(ml_selected), "AIMD_sampled": len(aimd_selected), "output": str(OUT)}, indent=2))
+    (out / "linear_parity_metrics.json").write_text(json.dumps(parity_metrics, indent=2))
+    print(json.dumps({"ML_frames": n_ml, "AIMD_frames": n_aimd, "ML_sampled": len(ml_selected), "AIMD_sampled": len(aimd_selected), "output": str(out)}, indent=2))
 
 
 if __name__ == "__main__":
