@@ -4,9 +4,9 @@ The model weights are arranged by system and retain their original filenames.
 
 | System | Framework | Model file |
 | --- | --- | --- |
-| CaF2/oil/water | MACE | [`caf2/caf2_mace_weight0p25_seed20260805.model`](https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.5.0/caf2_mace_weight0p25_seed20260805.model) |
-| SiO2/oil/water | DeePMD-kit | [`sio2/graph.pb`](https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.5.0/graph.pb) |
-| Oil/water | MACE | [`oil_water/youshui_mace_all_current_zbl_20260805.model`](https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.5.0/youshui_mace_all_current_zbl_20260805.model) |
+| CaF2/oil/water | MACE | [`caf2/caf2_mace_weight0p25_seed20260805.model`](https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.6.0/caf2_mace_weight0p25_seed20260805.model) |
+| SiO2/oil/water | DeePMD-kit | [`sio2/graph.pb`](https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.6.0/graph.pb) |
+| Oil/water | MACE | [`oil_water/youshui_mace_all_current_zbl_20260805.model`](https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.6.0/youshui_mace_all_current_zbl_20260805.model) |
 
 Use the MACE weights with the MACE/ASE simulation scripts in `simulation/mace/`.
 The SiO2 `.pb` file is the uncompressed frozen model from training step 50000.

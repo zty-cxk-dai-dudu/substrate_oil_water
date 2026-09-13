@@ -1,0 +1,12 @@
+layer_index,z_min_A,z_max_A,water_count,mean_membership_fraction,source_file,raw_export_file,point_count,status
+4,16.0,20.0,2,0.8454309138172366,vdos_water_layers_4A_velocity_fft/layer04_z16-20A.csv,layer04_z16-20A_raw.csv,1375,ok
+5,20.0,24.0,14,0.8457451366869483,vdos_water_layers_4A_velocity_fft/layer05_z20-24A.csv,layer05_z20-24A_raw.csv,1375,ok
+6,24.0,28.0,19,0.8458729306770225,vdos_water_layers_4A_velocity_fft/layer06_z24-28A.csv,layer06_z24-28A_raw.csv,1375,ok
+7,28.0,32.0,23,0.8370586752214777,vdos_water_layers_4A_velocity_fft/layer07_z28-32A.csv,layer07_z28-32A_raw.csv,1375,ok
+8,32.0,36.0,23,0.9033671526564252,vdos_water_layers_4A_velocity_fft/layer08_z32-36A.csv,layer08_z32-36A_raw.csv,1375,ok
+9,36.0,40.0,19,0.8839705743061913,vdos_water_layers_4A_velocity_fft/layer09_z36-40A.csv,layer09_z36-40A_raw.csv,1375,ok
+10,40.0,44.0,22,0.8782243551289742,vdos_water_layers_4A_velocity_fft/layer10_z40-44A.csv,layer10_z40-44A_raw.csv,1375,ok
+11,44.0,48.0,23,0.8379106787338185,vdos_water_layers_4A_velocity_fft/layer11_z44-48A.csv,layer11_z44-48A_raw.csv,1375,ok
+12,48.0,52.0,20,0.9276144771045789,vdos_water_layers_4A_velocity_fft/layer12_z48-52A.csv,layer12_z48-52A_raw.csv,1375,ok
+13,52.0,56.0,19,0.9213104747471557,vdos_water_layers_4A_velocity_fft/layer13_z52-56A.csv,layer13_z52-56A_raw.csv,1375,ok
+14,56.0,60.0,16,0.860627874425115,vdos_water_layers_4A_velocity_fft/layer14_z56-60A.csv,layer14_z56-60A_raw.csv,1375,ok

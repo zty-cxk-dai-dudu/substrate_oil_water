@@ -1,0 +1,24 @@
+figure_or_panel,data_file,workbook,contents
+"Figure 3c,d",Fig_3/xy_displacements.csv,Fig_3/Source_Data_Fig_3.xlsx,Selected-water lateral displacements over 500 ps.
+Figure S14,Fig_S14/xy_displacements.csv,Fig_S14/Source_Data_Fig_S14.xlsx,Selected-water lateral displacements over 500 ps.
+"Figure S18, upper panels",Fig_S18/hbond_timeseries.csv,Fig_S18/Source_Data_Fig_S18.xlsx,Instantaneous hydrogen-bond coordination.
+"Figure S18, lower panels",Fig_S18/partner_stability.csv,Fig_S18/Source_Data_Fig_S18.xlsx,Fourfold coordination and recurrent-partner statistics.
+Figure 4a,Fig_4/collective_depth_profiles.csv,Fig_4/Source_Data_Fig_4.xlsx,"Depth-dependent signed cross/self translation, with structural profiles."
+Figure 4b,Fig_4/central_film_blocks.csv,Fig_4/Source_Data_Fig_4.xlsx,Central-film order and collective translation in 50 consecutive 10 ps blocks per system.
+Figure 4c,Fig_4/caf2_layer_vdos.csv,Fig_4/Source_Data_Fig_4.xlsx,Layer-resolved water VDOS.
+Figure 4d,Fig_4/oil_water_layer_vdos.csv,Fig_4/Source_Data_Fig_4.xlsx,Layer-resolved water VDOS.
+Figure S20a–c,Fig_S20/structure_orientation_profiles.csv,Fig_S20/Source_Data_Fig_S20.xlsx,Tetrahedral and orientational order profiles.
+"Fig S9, energy panel",Fig_S9/energy_parity.csv,Fig_S9/Source_Data_Fig_S9.xlsx,"Offset-corrected, centred energy per atom."
+Fig S9,Fig_S9/parity_statistics.csv,Fig_S9/Source_Data_Fig_S9.xlsx,Statistics recalculated from all supplied point pairs.
+"Fig S10, energy panel",Fig_S10/energy_parity.csv,Fig_S10/Source_Data_Fig_S10.xlsx,"Offset-corrected, centred energy per atom."
+Fig S10,Fig_S10/parity_statistics.csv,Fig_S10/Source_Data_Fig_S10.xlsx,Statistics recalculated from all supplied point pairs.
+"Fig S12, energy panel",Fig_S12/energy_parity.csv,Fig_S12/Source_Data_Fig_S12.xlsx,"Offset-corrected, centred energy per atom."
+Fig S12,Fig_S12/parity_statistics.csv,Fig_S12/Source_Data_Fig_S12.xlsx,Statistics recalculated from all supplied point pairs.
+Fig S11,Fig_S11/radial_distribution_functions.csv,Fig_S11/Source_Data_Fig_S11.xlsx,Partial radial distribution functions and associated SEM columns.
+Fig S13,Fig_S13/radial_distribution_functions.csv,Fig_S13/Source_Data_Fig_S13.xlsx,Partial radial distribution functions and associated SEM columns.
+"Figure S16a,b",Fig_S16/oil_z_10ps_blocks.csv,Fig_S16/Source_Data_Fig_S16.xlsx,Consecutive 10 ps z-RMS values for each oil chain.
+Figure S16c,Fig_S16/oil_z_timeseries.csv,Fig_S16/Source_Data_Fig_S16.xlsx,Per-chain centre-of-mass z and squared displacement from the initial sample.
+Figure S16,Fig_S16/oil_z_system_summary.csv,Fig_S16/Source_Data_Fig_S16.xlsx,System summaries of oil z motion.
+"Fig S9, force panel",Fig_S9/force_parity.csv.gz,Fig_S9/Source_Data_Fig_S9.xlsx,All Cartesian force-component pairs in original order.
+"Fig S10, force panel",Fig_S10/force_parity.csv.gz,Fig_S10/Source_Data_Fig_S10.xlsx,All Cartesian force-component pairs in original order.
+"Fig S12, force panel",Fig_S12/force_parity.csv.gz,Fig_S12/Source_Data_Fig_S12.xlsx,All Cartesian force-component pairs in original order.

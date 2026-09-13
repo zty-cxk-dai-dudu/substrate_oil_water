@@ -14,7 +14,7 @@
     "filename": "caf2_mace_weight0p25_seed20260805.model",
     "bytes": 4776638,
     "sha256": "b7d23409e4d75cfa82005983d2980a34c4b4d07ab247119da06cd1f2c63e09d9",
-    "url": "https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.5.0/caf2_mace_weight0p25_seed20260805.model"
+    "url": "https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.6.0/caf2_mace_weight0p25_seed20260805.model"
   },
   {
     "id": "sio2",
@@ -30,7 +30,7 @@
     "filename": "graph.pb",
     "bytes": 10893339,
     "sha256": "f1edc429ec641ac5d487924d23f865258a1258d60858543677cec178d2825cf7",
-    "url": "https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.5.0/graph.pb",
+    "url": "https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.6.0/graph.pb",
     "representation": "uncompressed frozen model",
     "checkpoint_step": 50000
   },
@@ -47,6 +47,6 @@
     "filename": "youshui_mace_all_current_zbl_20260805.model",
     "bytes": 4550193,
     "sha256": "0bbb12c618becd8f4ef6773a2d9e72b407830a130a46b140e324ad7dce7e1f02",
-    "url": "https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.5.0/youshui_mace_all_current_zbl_20260805.model"
+    "url": "https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.6.0/youshui_mace_all_current_zbl_20260805.model"
   }
 ]

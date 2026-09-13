@@ -1,17 +1,18 @@
 # substrate_oil_water
 
-Computational scripts, potential-energy models, representative structures and trajectories for **Buried substrates transmit dynamic constraints through oil into the aqueous interior**.
+Computational scripts, source data, potential-energy models, representative structures and trajectories for **Buried substrates transmit dynamic constraints through oil into the aqueous interior**.
 
 Tianyue Zhang, Xiaoke Chen, Jing Li and Xiao-Yu Yang
 
 **Project website:** [https://zty-cxk-dai-dudu.github.io/substrate_oil_water/](https://zty-cxk-dai-dudu.github.io/substrate_oil_water/)
 
-**Complete download:** [Code, structures, trajectories and potential-energy models](https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.5.0/substrate_oil_water_complete_v0.5.0.zip)
+**Complete download:** [Code, source data, structures, trajectories and potential-energy models](https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.6.0/substrate_oil_water_complete_v0.6.0.zip)
 
 ## Contents
 
 | Directory | Contents |
 | --- | --- |
+| `data/` | Figure source data in Excel and CSV formats |
 | `simulation/mace/` | MACE training and molecular-dynamics scripts |
 | `analysis/aimd/` | AIMD trajectory processing, hydrogen bonds, water orientation and VDOS |
 | `analysis/water_dynamics/` | Water structure, displacement, orientational dynamics and collective spectra |
@@ -26,6 +27,12 @@ Tianyue Zhang, Xiaoke Chen, Jing Li and Xiao-Yu Yang
 | `trajectories/` | Representative AIMD and MLMD trajectories and frame indices |
 | `structures/` | Representative CIFs, arranged by system |
 | `models/` | MACE and DeePMD potential-energy weights and loading instructions |
+
+## Source data
+
+The [data directory](data/README.md) contains 11 figure workbooks and companion numerical tables for water and oil dynamics, layer spectra, and potential validation. The [figure index](data/figure_index.csv) maps each table to its panels.
+
+[Download source data](https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.6.0/substrate_oil_water_source_data_v0.6.0.zip) · [Data and code availability](DATA_AVAILABILITY.md)
 
 ## Structures
 
@@ -104,4 +111,4 @@ g++ -O3 -std=c++17 analysis/trajectory_reducers/reduce_lammps_water_com_velocity
 
 ## Potential-energy models
 
-See [models/README.md](models/README.md) for the three model files and loading examples. The complete download includes the model weights, code, inputs, CIF structures and representative trajectories.
+See [models/README.md](models/README.md) for the three model files and loading examples. The complete download includes the model weights, code, source data, inputs, CIF structures and representative trajectories.

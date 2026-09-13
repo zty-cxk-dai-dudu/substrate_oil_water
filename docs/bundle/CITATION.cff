@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "Please cite this repository and the accompanying article when using these files."
 type: software
 title: "Buried substrates transmit dynamic constraints through oil into the aqueous interior"
-version: "0.5.0"
+version: "0.6.0"
 authors:
   - family-names: Zhang
     given-names: Tianyue

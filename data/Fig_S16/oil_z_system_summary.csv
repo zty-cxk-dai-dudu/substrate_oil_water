@@ -1,0 +1,4 @@
+system,n_hexane,mean_10ps_z_rms_A,mean_10ps_z_msd_A2,final_z_msd_A2_mean_hexanes,max_z_msd_A2_across_hexanes,global_z_std_A_mean_hexanes
+CaF2,2,0.23250472,0.13065483,0.16380639,1.36035345,0.24989503
+SiO2,4,0.13259179,0.18721141,0.15942788,1.67858542,0.25539766
+oil,2,0.53591884,36.72785231,58.37214098,121.73875933,2.43141696

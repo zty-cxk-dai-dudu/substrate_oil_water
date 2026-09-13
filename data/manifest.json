@@ -1,0 +1,668 @@
+[
+  {
+    "file": "Fig_3/xy_displacements.csv",
+    "figure": "Figure 3c,d",
+    "description": "Selected-water lateral displacements over 500 ps.",
+    "rows": 30000,
+    "sha256": "edc1fa57ab9ee9d575e52b0f75288c874addb7430e62dee0d76e891911a3e704",
+    "sources": [
+      {
+        "source_file": "combined_twelve_water_timeseries_500ps_100fs.csv",
+        "source_sha256": "3fcccdad8d674e345dd44a1af7084f0cc398bc0be1361d2ce1f615457cd59c50"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "Fig_S14/xy_displacements.csv",
+    "figure": "Figure S14",
+    "description": "Selected-water lateral displacements over 500 ps.",
+    "rows": 15000,
+    "sha256": "923dec13128faa1dcacfebde56bebc9d1c9bbcc768d115f301871df23ed84dfd",
+    "sources": [
+      {
+        "source_file": "combined_twelve_water_timeseries_500ps_100fs.csv",
+        "source_sha256": "3fcccdad8d674e345dd44a1af7084f0cc398bc0be1361d2ce1f615457cd59c50"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "water_dynamics/selected_water_descriptors.csv",
+    "figure": "Selected-water analyses",
+    "description": "Depth, orientation and hydrogen-bond descriptors for nine waters.",
+    "rows": 45000,
+    "sha256": "9548c60a994202b34bc57defec93a39c680e03536afcffa5b71ed526c5e25639",
+    "sources": [
+      {
+        "source_file": "combined_twelve_water_timeseries_500ps_100fs.csv",
+        "source_sha256": "3fcccdad8d674e345dd44a1af7084f0cc398bc0be1361d2ce1f615457cd59c50"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "Fig_S18/hbond_timeseries.csv",
+    "figure": "Figure S18, upper panels",
+    "description": "Instantaneous hydrogen-bond coordination.",
+    "rows": 45000,
+    "sha256": "9c34809cb26aba7a2b027c486b1a1883ee465b6b8d29086979363bc717387c82",
+    "sources": [
+      {
+        "source_file": "combined_twelve_water_timeseries_500ps_100fs.csv",
+        "source_sha256": "3fcccdad8d674e345dd44a1af7084f0cc398bc0be1361d2ce1f615457cd59c50"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "Fig_S18/partner_stability.csv",
+    "figure": "Figure S18, lower panels",
+    "description": "Fourfold coordination and recurrent-partner statistics.",
+    "rows": 9,
+    "sha256": "aea151af2ca464926fc366d1ff1bf1ceeebaf7b891fee5c9aa001c3e02519e37",
+    "sources": [
+      {
+        "source_file": "four_relative_z_water_three_system_summary.csv",
+        "source_sha256": "d20bb5501a37d5c064ec8e6111d22289bc48c2a942922a3e34cdc0bb7eba42a4"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "collective_blocks/caf2_z_profile_2A_block_statistics.csv",
+    "figure": "Figures 4a,b and S20",
+    "description": "Native per-layer, per-block statistics.",
+    "rows": 600,
+    "sha256": "211be93b7dee70d72fe25c7d45b79427a2a677c07c7f87362f992d48bbcb8e6d",
+    "sources": [
+      {
+        "source_file": "z_profile_2A_block_statistics.csv",
+        "source_sha256": "cdb45f3f9ead408ed9a8c9fa8a4847425b7db4838485b565d70d182017e6254b"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "collective_blocks/caf2_collective_translation_block_band_metrics.csv",
+    "figure": "Figures 4a,b and S20",
+    "description": "Native per-layer, per-block statistics.",
+    "rows": 600,
+    "sha256": "e8bb90aa1bc23893fed93fe0cbaacda400d486ff620e24ac00637d091e7e86f5",
+    "sources": [
+      {
+        "source_file": "collective_translation_block_band_metrics.csv",
+        "source_sha256": "56df814df58bff4fc3c2716c05c0533424e8a54b84a6a4f391985a6cb61c83e6"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "collective_blocks/oil_z_profile_2A_block_statistics.csv",
+    "figure": "Figures 4a,b and S20",
+    "description": "Native per-layer, per-block statistics.",
+    "rows": 600,
+    "sha256": "a06ee4b9e757f4026012c5317881375201bb75201072bd48ff3bbaa0d26d337a",
+    "sources": [
+      {
+        "source_file": "z_profile_2A_block_statistics.csv",
+        "source_sha256": "60ee96267ee3d0569aaf1f2fafae0d1665d90c923721dc026b20c7b7cf78f552"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "collective_blocks/oil_collective_translation_block_band_metrics.csv",
+    "figure": "Figures 4a,b and S20",
+    "description": "Native per-layer, per-block statistics.",
+    "rows": 600,
+    "sha256": "384746f5546aca2227807a4756ab8bb4040e1069469ef2d9f7601a90836a4416",
+    "sources": [
+      {
+        "source_file": "collective_translation_block_band_metrics.csv",
+        "source_sha256": "544b6b77f99439738f07ee3316b230de5141456081613424600298613af975ee"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "collective_blocks/sio2_z_profile_2A_block_statistics.csv",
+    "figure": "Figures 4a,b and S20",
+    "description": "Native per-layer, per-block statistics.",
+    "rows": 1050,
+    "sha256": "ef4da3e834309458e93537422b0e9434a66ae0e8dee71787370bd4406dab32b1",
+    "sources": [
+      {
+        "source_file": "z_profile_2A_block_statistics.csv",
+        "source_sha256": "7e5d819391f9c162ce8fee8a936bb75d6665c5bb0c48ba55e32baa48a49b0fdb"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "collective_blocks/sio2_collective_translation_block_band_metrics.csv",
+    "figure": "Figures 4a,b and S20",
+    "description": "Native per-layer, per-block statistics.",
+    "rows": 1050,
+    "sha256": "3e9936a162d2fd8ba91767cf975b9a5d443f4bedbdd2b7888c6032ac1a7bf963",
+    "sources": [
+      {
+        "source_file": "collective_translation_block_band_metrics.csv",
+        "source_sha256": "0fdaada7fffb0287c810c5739b14ef9f43c74e60c3b81221c632347cee8f8783"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "Fig_4/collective_depth_profiles.csv",
+    "figure": "Figure 4a",
+    "description": "Depth-dependent signed cross/self translation, with structural profiles.",
+    "rows": 45,
+    "sha256": "010df3c6fdb5ee9b04ac3a92c848e45bda243780aef81fe1e6b77be40647f416",
+    "sources": [
+      {
+        "source_file": "Fig_best_contrast_source_profiles.csv",
+        "source_sha256": "05129b8bb78673cdf86c17b305bf4f60fba0b091ef398e63f24249a01e6f0055"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "Fig_4/central_film_blocks.csv",
+    "figure": "Figure 4b",
+    "description": "Central-film order and collective translation in 50 consecutive 10 ps blocks per system.",
+    "rows": 150,
+    "sha256": "78a4cf6a6adb0e0ec41bea40136c3f6b3f6782d091c813f6f4a96a0dca37ab3c",
+    "sources": [
+      {
+        "source_file": "Fig_best_contrast_source_central_blocks.csv",
+        "source_sha256": "c59a57fd3cdd2d7146e35bd3b66f458513e589b5a3d791952bc1043ff0dda87d"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "Fig_4/caf2_layer_vdos.csv",
+    "figure": "Figure 4c",
+    "description": "Layer-resolved water VDOS.",
+    "rows": 33006,
+    "sha256": "9cb2b92684e6be5b87e76e7f9994adf35f0fb1471bb24931fb3d413c2cbee5c7",
+    "sources": [
+      {
+        "source_file": "vdos_L5_16_20A.csv",
+        "source_sha256": "ed96535f4060527dcb1f81b17017b6f941de42556a62f27c33b7a342e38afcef"
+      },
+      {
+        "source_file": "vdos_L6_20_24A.csv",
+        "source_sha256": "da8f37620ad11c68edb22745ec137832faab77f2361bbd8cd0e479036b2ba538"
+      },
+      {
+        "source_file": "vdos_L3_8_12A.csv",
+        "source_sha256": "43035821b6aa1f498af3b05926d53a0f4195cd62e631989448137e6a52108fae"
+      },
+      {
+        "source_file": "vdos_L1_0_4A.csv",
+        "source_sha256": "03340eed636f760070d689675a6afe3ea993f7c6f841699c5d103eaec7cf404f"
+      },
+      {
+        "source_file": "vdos_L2_4_8A.csv",
+        "source_sha256": "3b325483008541832603aaee31c90f6e2b055d3169461cab913d1b0e1ee2b80f"
+      },
+      {
+        "source_file": "vdos_L4_12_16A.csv",
+        "source_sha256": "f2ab173c26d4f7db71e071c458129a4be3a778a78cddf49067e52db9a8d764fa"
+      },
+      {
+        "source_file": "metadata.json",
+        "source_sha256": "8a61830320b8e8a836b43c358825f5849203ad16a32eaa808f64008a59a68b80"
+      },
+      {
+        "source_file": "layer_summary.csv",
+        "source_sha256": "bdb2fe3718d1a6fcff878cec1266be6d5be7f33be9019b267929d51f6bf7fb5f"
+      }
+    ],
+    "processing": "Original normalized spectrum and original plotted frequency; frequency shift 0 cm^-1 is retained and the calculated frequency is also supplied."
+  },
+  {
+    "file": "Fig_4/oil_water_layer_vdos.csv",
+    "figure": "Figure 4d",
+    "description": "Layer-resolved water VDOS.",
+    "rows": 45264,
+    "sha256": "052aa125ddf298855ede3d9893bdf268cd0393400d857480210230b9623dbdbb",
+    "sources": [
+      {
+        "source_file": "vdos_L5_16_20A.csv",
+        "source_sha256": "cf440617045eab1a5ba5e5935f752f77be2310bc05881a7f1bfcc82df782d6c8"
+      },
+      {
+        "source_file": "vdos_L6_20_24A.csv",
+        "source_sha256": "54d428f0b00c2afeffee04bac17c9c0bde0d1b8f0780f3598b6c27e801683968"
+      },
+      {
+        "source_file": "vdos_L3_8_12A.csv",
+        "source_sha256": "849f6a08082cbef31a7cbb64e55bbd2a5e1478e48f5b9c11357e762763a11ceb"
+      },
+      {
+        "source_file": "vdos_L1_0_4A.csv",
+        "source_sha256": "fc6b2452b22f9a300a3a61286c8f37f958337f4f2893a225f316b83abfd107fd"
+      },
+      {
+        "source_file": "vdos_L7_24_28A.csv",
+        "source_sha256": "287f8ea91086408bdf59026c09adcb7cfe09a282c8dbcd9af5a9e20031345714"
+      },
+      {
+        "source_file": "vdos_L2_4_8A.csv",
+        "source_sha256": "109a3d04c0c7fd93e86112a2f80da08675a47bdd63b0d9855c5c3fd684e723d8"
+      },
+      {
+        "source_file": "vdos_L8_28_32A.csv",
+        "source_sha256": "3779b87bc7e867b37e8bb39ce33218c9bde61796034284baf443b2d6afaa7cb4"
+      },
+      {
+        "source_file": "vdos_L4_12_16A.csv",
+        "source_sha256": "946141d5bc59896edda10634654149600af90b2dc2102d07c2c43f3c70e8b449"
+      },
+      {
+        "source_file": "metadata.json",
+        "source_sha256": "79b93358d885500dadc7a2c7a84811259e3d82abc53f53e5ac3f92ea1a0dbba0"
+      },
+      {
+        "source_file": "layer_summary.csv",
+        "source_sha256": "a522c7d4ef0c8ad47acfb169b34805e525948521d19689e7f0fcd3345b055d95"
+      }
+    ],
+    "processing": "Original normalized spectrum and original plotted frequency; frequency shift 80 cm^-1 is retained and the calculated frequency is also supplied."
+  },
+  {
+    "file": "Fig_S20/structure_orientation_profiles.csv",
+    "figure": "Figure S20a–c",
+    "description": "Tetrahedral and orientational order profiles.",
+    "rows": 45,
+    "sha256": "44411387ad8c0e7a863ffa5c0de689d35515668b04e5a50a15a4148eb85ce76b",
+    "sources": [
+      {
+        "source_file": "Fig_best_contrast_source_profiles.csv",
+        "source_sha256": "05129b8bb78673cdf86c17b305bf4f60fba0b091ef398e63f24249a01e6f0055"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "Fig_S9/energy_parity.csv",
+    "figure": "Fig S9, energy panel",
+    "description": "Offset-corrected, centred energy per atom.",
+    "rows": 403,
+    "sha256": "2e7039192eafddc331af957c7e219deb1c78b9e34bc177a0a40b29e7400e770b",
+    "sources": [
+      {
+        "source_file": "caf2_energy_linear_parity_validation_ev_per_atom_data.txt",
+        "source_sha256": "55c0263e0f5aa415cdf4dcf341455266318e21674ccafc2f145b904f916d030d"
+      }
+    ],
+    "processing": "Exact exported plot values in eV/atom. A common DFT mean has been subtracted for display; the model energy bias has been removed without slope rescaling."
+  },
+  {
+    "file": "Fig_S9/force_parity.csv.gz",
+    "figure": "Fig S9, force panel",
+    "description": "All Cartesian force-component pairs in original order.",
+    "rows": 316758,
+    "sha256": "f38782462b1efd9b6e138bc701cd41eab2e0191561d172fc7fa54b41694e15f8",
+    "sources": [
+      {
+        "source_file": "caf2_force_linear_parity_validation_ev_per_A_data.txt",
+        "source_sha256": "70c875c01d57f31a1f8c478524df633e760db402c692c555dae1a184a56d544f"
+      }
+    ],
+    "processing": "Lossless CSV serialization in gzip; no subsampling."
+  },
+  {
+    "file": "Fig_S9/parity_statistics.csv",
+    "figure": "Fig S9",
+    "description": "Statistics recalculated from all supplied point pairs.",
+    "rows": 2,
+    "sha256": "e001b0fefaa74de550a0d721e1b6e61f923822f221af9b713dab9e7f644d1c36",
+    "sources": [
+      {
+        "source_file": "caf2_energy_linear_parity_validation_ev_per_atom_data.txt",
+        "source_sha256": "55c0263e0f5aa415cdf4dcf341455266318e21674ccafc2f145b904f916d030d"
+      },
+      {
+        "source_file": "caf2_force_linear_parity_validation_ev_per_A_data.txt",
+        "source_sha256": "70c875c01d57f31a1f8c478524df633e760db402c692c555dae1a184a56d544f"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "Fig_S10/energy_parity.csv",
+    "figure": "Fig S10, energy panel",
+    "description": "Offset-corrected, centred energy per atom.",
+    "rows": 549,
+    "sha256": "af5e8af86a3a15228011b9a5e981d4bb6571897948bce79285fb9aecf5123d5a",
+    "sources": [
+      {
+        "source_file": "youshui_energy_linear_parity_validation_ev_per_atom_data.txt",
+        "source_sha256": "0c9c444d8574732fbf63a9ae03c847aedcb9c8a4597018803069c11d25194175"
+      }
+    ],
+    "processing": "Exact exported plot values in eV/atom. A common DFT mean has been subtracted for display; the model energy bias has been removed without slope rescaling."
+  },
+  {
+    "file": "Fig_S10/force_parity.csv.gz",
+    "figure": "Fig S10, force panel",
+    "description": "All Cartesian force-component pairs in original order.",
+    "rows": 411750,
+    "sha256": "31b5259c2664f736582beab3d8ad1ca675e3421e1aee1f27a1d7099ee1b0fc2f",
+    "sources": [
+      {
+        "source_file": "youshui_force_linear_parity_validation_ev_per_A_data.txt",
+        "source_sha256": "534ac9378e6de2cba7f3488cca9a9915e4e7ca68f349af80cd7a2abb6f6b3f31"
+      }
+    ],
+    "processing": "Lossless CSV serialization in gzip; no subsampling."
+  },
+  {
+    "file": "Fig_S10/parity_statistics.csv",
+    "figure": "Fig S10",
+    "description": "Statistics recalculated from all supplied point pairs.",
+    "rows": 2,
+    "sha256": "04f00d65264a4b5ff46e6c52c3b1a2fb54546b9ccc4484c269457910577e8157",
+    "sources": [
+      {
+        "source_file": "youshui_energy_linear_parity_validation_ev_per_atom_data.txt",
+        "source_sha256": "0c9c444d8574732fbf63a9ae03c847aedcb9c8a4597018803069c11d25194175"
+      },
+      {
+        "source_file": "youshui_force_linear_parity_validation_ev_per_A_data.txt",
+        "source_sha256": "534ac9378e6de2cba7f3488cca9a9915e4e7ca68f349af80cd7a2abb6f6b3f31"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "Fig_S12/energy_parity.csv",
+    "figure": "Fig S12, energy panel",
+    "description": "Offset-corrected, centred energy per atom.",
+    "rows": 1668,
+    "sha256": "da0532a047dbde55c243f1befe43b9bc69f5694ce16998a3b665191e1e116d6e",
+    "sources": [
+      {
+        "source_file": "energy_linear_parity_validation_ev_per_atom_data.txt",
+        "source_sha256": "27369b83674c4dc24afdb238b1843b54ed678c52668e7ed7b22b5e94673028e6"
+      }
+    ],
+    "processing": "Exact exported plot values in eV/atom. A common DFT mean has been subtracted for display; the model energy bias has been removed without slope rescaling."
+  },
+  {
+    "file": "Fig_S12/force_parity.csv.gz",
+    "figure": "Fig S12, force panel",
+    "description": "All Cartesian force-component pairs in original order.",
+    "rows": 2051640,
+    "sha256": "4c5f865c219111af70c0b8a64471deff7d7782d5b7d9cd4cddac6cca95ae2d3c",
+    "sources": [
+      {
+        "source_file": "force_linear_parity_validation_ev_per_A_data.txt",
+        "source_sha256": "5f2ceb1360c93b55abe17e01c689ad577854438f3ef0f93d3321080a612859fd"
+      }
+    ],
+    "processing": "Lossless CSV serialization in gzip; no subsampling."
+  },
+  {
+    "file": "Fig_S12/parity_statistics.csv",
+    "figure": "Fig S12",
+    "description": "Statistics recalculated from all supplied point pairs.",
+    "rows": 2,
+    "sha256": "23daa0c1759e41670ffa4ec915d2d5b825735511d3881af4e44f7688baa8f3fa",
+    "sources": [
+      {
+        "source_file": "energy_linear_parity_validation_ev_per_atom_data.txt",
+        "source_sha256": "27369b83674c4dc24afdb238b1843b54ed678c52668e7ed7b22b5e94673028e6"
+      },
+      {
+        "source_file": "force_linear_parity_validation_ev_per_A_data.txt",
+        "source_sha256": "5f2ceb1360c93b55abe17e01c689ad577854438f3ef0f93d3321080a612859fd"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "Fig_S11/radial_distribution_functions.csv",
+    "figure": "Fig S11",
+    "description": "Partial radial distribution functions and associated SEM columns.",
+    "rows": 1680,
+    "sha256": "93e5d1e558a63da6fbe8a279723b55faad3739ee250489dd6b10fdbb613fc267",
+    "sources": [
+      {
+        "source_file": "rdf_validation_oh_oo_curves.csv",
+        "source_sha256": "93e5d1e558a63da6fbe8a279723b55faad3739ee250489dd6b10fdbb613fc267"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "Fig_S13/radial_distribution_functions.csv",
+    "figure": "Fig S13",
+    "description": "Partial radial distribution functions and associated SEM columns.",
+    "rows": 1260,
+    "sha256": "5868f0417fb24b9d51f888893d0362fb64183c198a871f2c5a8dfaba1458fdba",
+    "sources": [
+      {
+        "source_file": "rdf_ml_aimd_curves.csv",
+        "source_sha256": "5868f0417fb24b9d51f888893d0362fb64183c198a871f2c5a8dfaba1458fdba"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "Fig_S16/oil_z_timeseries.csv",
+    "figure": "Figure S16c",
+    "description": "Per-chain centre-of-mass z and squared displacement from the initial sample.",
+    "rows": 40000,
+    "sha256": "19d1e4f64f622dd5a7bdac1f0d0d517657cce98fa345dbfee1045cfac0af20e6",
+    "sources": [
+      {
+        "source_file": "hexane_z_rms_msd_timeseries.csv",
+        "source_sha256": "ab31bba52577d1c39d57bccabe639ac099679cddcac42b68c4d01ae4acab9edf"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "Fig_S16/oil_z_10ps_blocks.csv",
+    "figure": "Figure S16a,b",
+    "description": "Consecutive 10 ps z-RMS values for each oil chain.",
+    "rows": 400,
+    "sha256": "539bbe67d21bd602119953520f36225e5ab47aeb88519ada5e1a7ef3d8177ccf",
+    "sources": [
+      {
+        "source_file": "hexane_z_rms_msd_10ps_blocks.csv",
+        "source_sha256": "88e3a18bb443ea837b22b928d6482cd283249f7af6ff7aa6ef3391de745cb6c1"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "Fig_S16/oil_z_system_summary.csv",
+    "figure": "Figure S16",
+    "description": "System summaries of oil z motion.",
+    "rows": 3,
+    "sha256": "e26d81b16db9e2db76bb4c3c679ce188123dc0380a0510aee07c64ba5e7e1e40",
+    "sources": [
+      {
+        "source_file": "hexane_z_rms_msd_system_summary.csv",
+        "source_sha256": "5a336343951239d35ddd6170ec15315f3d2536ec39ff22fefc0ac3f0006f1b41"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "spectra/sio2_layer_vdos_raw.csv",
+    "figure": "SiO2 layer spectra",
+    "description": "Unsmoothed layer VDOS, mean and SEM.",
+    "rows": 15125,
+    "sha256": "e904fcc91feb2aad97cef95102a0aa539bb472caecfde19983a10f1221bec07e",
+    "sources": [
+      {
+        "source_file": "layer_vdos_raw_plot_data_long.csv",
+        "source_sha256": "e4c4a5121e9b7fc432b6aaa4dab85cd4a9084110c149fed8f3928422c7ddc18b"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "spectra/sio2_layer_vdos_shifted.csv",
+    "figure": "SiO2 layer spectra",
+    "description": "Original frequency-shifted plotting export (+80 cm^-1).",
+    "rows": 15125,
+    "sha256": "e01a4ed795b08c3a224baeadcf3bf07109dd999a774f76c40f14e714d120aa25",
+    "sources": [
+      {
+        "source_file": "layer_vdos_blue_shift_plus80_plot_data_long.csv",
+        "source_sha256": "6c9164c3feaca1f99e820c2927b2fb06049431489ccde682b6f909ef1bb4a1de"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "spectra/sio2_layers.csv",
+    "figure": "SiO2 layer spectra",
+    "description": "Layer bounds, water counts and original source-column identifiers.",
+    "rows": 11,
+    "sha256": "2b0bc875ac04be7302909ab7cb8d42284a4423f9381b66e9c0855ec48dfaafa2",
+    "sources": [
+      {
+        "source_file": "layer_raw_data_manifest.csv",
+        "source_sha256": "c932889cc77babce9c0ce5e57dafb124c8893a44994042e7cc337e51e3c97c24"
+      }
+    ],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "figure_index.csv",
+    "figure": "Figure index",
+    "description": "Figure-to-file mapping.",
+    "rows": 23,
+    "sha256": "64e8b356e175991d1532701e8a4283ade099a0e34264348232bdb5ed70dd1ea7",
+    "sources": [],
+    "processing": "Original numerical values; columns selected and labelled for data access."
+  },
+  {
+    "file": "Fig_3/Source_Data_Fig_3.xlsx",
+    "figure": "Fig 3",
+    "description": "Excel source-data workbook with data tables and notes.",
+    "rows": 30000,
+    "sha256": "42e63cfe62098321e2d4018de07a9e25002a4e4656f252eceed1a8084e134f32",
+    "tables": [
+      "Fig_3/xy_displacements.csv"
+    ]
+  },
+  {
+    "file": "Fig_S14/Source_Data_Fig_S14.xlsx",
+    "figure": "Fig S14",
+    "description": "Excel source-data workbook with data tables and notes.",
+    "rows": 15000,
+    "sha256": "5a66e394b9d54f2264addd3a9295631ed6c0241fc6ea579abf2d75830cc8855f",
+    "tables": [
+      "Fig_S14/xy_displacements.csv"
+    ]
+  },
+  {
+    "file": "Fig_S18/Source_Data_Fig_S18.xlsx",
+    "figure": "Fig S18",
+    "description": "Excel source-data workbook with data tables and notes.",
+    "rows": 45009,
+    "sha256": "c9cc53a5c199341af1c2df976a7c7ac94030a763fe2b3bae719bd632b5b23003",
+    "tables": [
+      "Fig_S18/hbond_timeseries.csv",
+      "Fig_S18/partner_stability.csv"
+    ]
+  },
+  {
+    "file": "Fig_4/Source_Data_Fig_4.xlsx",
+    "figure": "Fig 4",
+    "description": "Excel source-data workbook with data tables and notes.",
+    "rows": 78465,
+    "sha256": "69713ecd73293503c0af4a0e9977d4853662980265421e820f5af8122663c886",
+    "tables": [
+      "Fig_4/collective_depth_profiles.csv",
+      "Fig_4/central_film_blocks.csv",
+      "Fig_4/caf2_layer_vdos.csv",
+      "Fig_4/oil_water_layer_vdos.csv"
+    ]
+  },
+  {
+    "file": "Fig_S20/Source_Data_Fig_S20.xlsx",
+    "figure": "Fig S20",
+    "description": "Excel source-data workbook with data tables and notes.",
+    "rows": 45,
+    "sha256": "a17765a581cc405cfa1b0d60ca02d662bca3bf8a40e145956fc01de94cbb7364",
+    "tables": [
+      "Fig_S20/structure_orientation_profiles.csv"
+    ]
+  },
+  {
+    "file": "Fig_S9/Source_Data_Fig_S9.xlsx",
+    "figure": "Fig S9",
+    "description": "Excel source-data workbook with data tables and notes.",
+    "rows": 405,
+    "sha256": "156e7c50d5c6fe2a5a6db1edb0e8aa85193d738045fd824f825c2e6aba66d017",
+    "tables": [
+      "Fig_S9/energy_parity.csv",
+      "Fig_S9/parity_statistics.csv"
+    ]
+  },
+  {
+    "file": "Fig_S10/Source_Data_Fig_S10.xlsx",
+    "figure": "Fig S10",
+    "description": "Excel source-data workbook with data tables and notes.",
+    "rows": 551,
+    "sha256": "35faef6fed1201223051369fed1d944ac8ca8bcaf48d31786a13e04d2c650a5e",
+    "tables": [
+      "Fig_S10/energy_parity.csv",
+      "Fig_S10/parity_statistics.csv"
+    ]
+  },
+  {
+    "file": "Fig_S12/Source_Data_Fig_S12.xlsx",
+    "figure": "Fig S12",
+    "description": "Excel source-data workbook with data tables and notes.",
+    "rows": 1670,
+    "sha256": "46eec8d0bf1a549dfe27096ecbc68dd95e121766e1026d7efabfad75a3af831e",
+    "tables": [
+      "Fig_S12/energy_parity.csv",
+      "Fig_S12/parity_statistics.csv"
+    ]
+  },
+  {
+    "file": "Fig_S11/Source_Data_Fig_S11.xlsx",
+    "figure": "Fig S11",
+    "description": "Excel source-data workbook with data tables and notes.",
+    "rows": 1680,
+    "sha256": "822e8c21a706b1169507763f98721c1d1348a5782ff33c371ff31913315589e6",
+    "tables": [
+      "Fig_S11/radial_distribution_functions.csv"
+    ]
+  },
+  {
+    "file": "Fig_S13/Source_Data_Fig_S13.xlsx",
+    "figure": "Fig S13",
+    "description": "Excel source-data workbook with data tables and notes.",
+    "rows": 1260,
+    "sha256": "8ef1c88621b8b9d586b8e44bcdd359cd8e9b1e93b3678dcbe4332d6573ab44b1",
+    "tables": [
+      "Fig_S13/radial_distribution_functions.csv"
+    ]
+  },
+  {
+    "file": "Fig_S16/Source_Data_Fig_S16.xlsx",
+    "figure": "Fig S16",
+    "description": "Excel source-data workbook with data tables and notes.",
+    "rows": 40403,
+    "sha256": "30b74363a9e2b42340740a4b155b548208b16db991a3434701e866ef901cf228",
+    "tables": [
+      "Fig_S16/oil_z_10ps_blocks.csv",
+      "Fig_S16/oil_z_timeseries.csv",
+      "Fig_S16/oil_z_system_summary.csv"
+    ]
+  }
+]
