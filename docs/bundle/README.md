@@ -1,12 +1,12 @@
 # substrate_oil_water
 
-Computational scripts, potential-energy models and representative structures for **Buried substrates transmit dynamic constraints through oil into the aqueous interior**.
+Computational scripts, potential-energy models, representative structures and trajectories for **Buried substrates transmit dynamic constraints through oil into the aqueous interior**.
 
 Tianyue Zhang, Xiaoke Chen, Jing Li and Xiao-Yu Yang
 
 **Project website:** [https://zty-cxk-dai-dudu.github.io/substrate_oil_water/](https://zty-cxk-dai-dudu.github.io/substrate_oil_water/)
 
-**Complete download:** [Code, structures and potential-energy models](https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.4.0/substrate_oil_water_complete_v0.4.0.zip)
+**Complete download:** [Code, structures, trajectories and potential-energy models](https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.5.0/substrate_oil_water_complete_v0.5.0.zip)
 
 ## Contents
 
@@ -20,8 +20,10 @@ Tianyue Zhang, Xiaoke Chen, Jing Li and Xiao-Yu Yang
 | `analysis/charge_density/` | CP2K single-point preparation and charge-density subtraction |
 | `analysis/model_validation/` | Energy/force comparison and radial distribution functions |
 | `analysis/trajectory_reducers/` | C++ programs for reducing LAMMPS velocity trajectories |
+| `analysis/trajectories/` | Representative trajectory export and frame indexing |
 | `analysis/structures/` | Structure conversion to CIF |
 | `input_files/` | Molecular-dynamics and potential-training inputs |
+| `trajectories/` | Representative AIMD and MLMD trajectories and frame indices |
 | `structures/` | Representative CIFs, arranged by system |
 | `models/` | MACE and DeePMD potential-energy weights and loading instructions |
 
@@ -36,6 +38,10 @@ Each system has an AIMD model and a 500 ps MLMD snapshot. The CIFs contain the s
 | Oil/water | [260 atoms](structures/oil_water/oil_water_aimd.cif) | [500 atoms](structures/oil_water/oil_water_mlmd_500ps.cif) |
 
 The [structure index](structures/index.csv) lists compositions and water counts. Open the CIF files in VESTA, OVITO or ASE. Simulation constraints are specified in the original inputs under `input_files/`.
+
+## Representative trajectories
+
+Four trajectory files cover CaF2-supported, SiO2-supported and unsupported oil/water. Each contains 201 regularly sampled frames with all atoms and the simulation cell. See [trajectories/README.md](trajectories/README.md) for selections, downloads and viewing instructions.
 
 ## Installation
 
@@ -98,4 +104,4 @@ g++ -O3 -std=c++17 analysis/trajectory_reducers/reduce_lammps_water_com_velocity
 
 ## Potential-energy models
 
-See [models/README.md](models/README.md) for the three model files and loading examples. The complete download includes the model weights, code, inputs and CIF structures.
+See [models/README.md](models/README.md) for the three model files and loading examples. The complete download includes the model weights, code, inputs, CIF structures and representative trajectories.
