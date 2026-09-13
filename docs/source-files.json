@@ -1,0 +1,287 @@
+[
+  {
+    "file": "analysis/aimd/caf2/analyze_hbonds_last50000_xdatcar.py",
+    "bytes": 15636,
+    "sha256": "9c01fcb1ccb07724a709ef4bfa1fd6c975a6c569590304e11f65f3f2191cfa3a"
+  },
+  {
+    "file": "analysis/aimd/caf2/analyze_xin_three_water_orientation.py",
+    "bytes": 12050,
+    "sha256": "18fb778fda9f6e4b2cdee600fc9e04d8c5e28f4622fc9ffcaa5fbbb65cea4085"
+  },
+  {
+    "file": "analysis/aimd/caf2/export_water_cartesian_xdatcar_last50000.py",
+    "bytes": 5488,
+    "sha256": "d2146d4fd895920c9d48f3af9a7112b8805ad67bf03b2946b3cc82b5e85fc929"
+  },
+  {
+    "file": "analysis/aimd/caf2/filter_low_stability_hbonds.py",
+    "bytes": 3220,
+    "sha256": "cf619f4fc5d3f77b6d13113f395be7cfb029a0adf4bb307e9c6d144b46832b19"
+  },
+  {
+    "file": "analysis/aimd/caf2/filter_strict_hbonds_by_fraction.py",
+    "bytes": 4471,
+    "sha256": "fa700ee2d74e86b1886e3ae6aaaada93716dd1fd0ff1096e61b0564ee90dba42"
+  },
+  {
+    "file": "analysis/aimd/caf2/make_xdatcar_window.py",
+    "bytes": 2176,
+    "sha256": "229e1138ef06a3233eb15a9272bedc9acf101d4f04bae9cf3d0269e4f0edc8b4"
+  },
+  {
+    "file": "analysis/aimd/caf2/reformat_hbonds_by_o_serial.py",
+    "bytes": 5360,
+    "sha256": "31d36114c73b2253a3f6d943d3d57729e71eecc569834207ff3e0979fa057d0f"
+  },
+  {
+    "file": "analysis/aimd/caf2/run_vaspkit_728_per_water.py",
+    "bytes": 5966,
+    "sha256": "82f6366cadebc0be26ff61c3eeb13cdea87c0d1dafecb2ad5e554f8b3fd71f50"
+  },
+  {
+    "file": "analysis/aimd/caf2/run_vaspkit_728_water_layers.py",
+    "bytes": 7447,
+    "sha256": "9541a76bf63ba3e4f908e8f68ff3f73fd1cde69dbb425c048b8fca9da6ad294c"
+  },
+  {
+    "file": "analysis/aimd/caf2/xdatcar_water_orientation.py",
+    "bytes": 17662,
+    "sha256": "ba285e849d8e0b0bf9f9cce01ee1af83023a9074dcbef43c585a2ead6cc7d808"
+  },
+  {
+    "file": "analysis/aimd/cp2k/cp2k_velocity_vdos.py",
+    "bytes": 10802,
+    "sha256": "51dcbf83d96cdbf50879ba79b87ca7bda89d76130822a62a896d2ae40358d0e4"
+  },
+  {
+    "file": "analysis/aimd/oil_water/xdatcar_water_orientation.py",
+    "bytes": 17662,
+    "sha256": "ba285e849d8e0b0bf9f9cce01ee1af83023a9074dcbef43c585a2ead6cc7d808"
+  },
+  {
+    "file": "analysis/aimd/sio2/analyze_hbonds_sio2h2o_xdatcar.py",
+    "bytes": 16074,
+    "sha256": "ada3dd11b1ec5709f7b1ae5008a083f22d489be8bde1229adc27c79330332472"
+  },
+  {
+    "file": "analysis/aimd/sio2/build_z_named_outputs.py",
+    "bytes": 3902,
+    "sha256": "c74587fa34b8adf1c2e8cf95e58960b5aee7959fcffc4791f8f7b0bb16eb55bd"
+  },
+  {
+    "file": "analysis/aimd/sio2/export_water_cartesian_xdatcar_last50000.py",
+    "bytes": 5488,
+    "sha256": "d2146d4fd895920c9d48f3af9a7112b8805ad67bf03b2946b3cc82b5e85fc929"
+  },
+  {
+    "file": "analysis/aimd/sio2/filter_strict_hbonds_by_fraction.py",
+    "bytes": 4471,
+    "sha256": "fa700ee2d74e86b1886e3ae6aaaada93716dd1fd0ff1096e61b0564ee90dba42"
+  },
+  {
+    "file": "analysis/aimd/sio2/prepare_last_xdatcar.py",
+    "bytes": 1539,
+    "sha256": "d41ebdfc58b6a77667aa0ffdda8f45ec0deac9b334e6d9454f027743c9657b22"
+  },
+  {
+    "file": "analysis/aimd/sio2/reformat_hbonds_by_o_serial.py",
+    "bytes": 5360,
+    "sha256": "31d36114c73b2253a3f6d943d3d57729e71eecc569834207ff3e0979fa057d0f"
+  },
+  {
+    "file": "analysis/aimd/sio2/run_vaspkit_728_per_water_sio2h2o.py",
+    "bytes": 7944,
+    "sha256": "ec78ea4d7b5edb500cdfdcdbe7b39216f3f0f89ed589cd8923a96edccc90d86d"
+  },
+  {
+    "file": "analysis/aimd/sio2/run_vaspkit_728_water_layers_sio2h2o.py",
+    "bytes": 9394,
+    "sha256": "cb5144f4dca3930bae00cc6b8567432477723893aa818d2a744fb8b8b788b7e2"
+  },
+  {
+    "file": "analysis/charge_density/prepare_cp2k.py",
+    "bytes": 8244,
+    "sha256": "afa801e288ad6fc0ef2eed456d2de676a82a93d1c2a353a8bfe417910deafc7f"
+  },
+  {
+    "file": "analysis/charge_density/subtract_cubes.py",
+    "bytes": 5366,
+    "sha256": "5a9cc14ea4f2d6ee39a52d74972842146890f4475d5a6a5992e93393c3d7a8ed"
+  },
+  {
+    "file": "analysis/interaction_energy/caf2/O130_O137_O151_interaction/finalize_results.py",
+    "bytes": 2399,
+    "sha256": "6b4aa7b7c508471aa62fa4e7bb1a68f9221e7925614f17746f38fb6b7ced313f"
+  },
+  {
+    "file": "analysis/interaction_energy/caf2/prepare_interaction_calculations.py",
+    "bytes": 7858,
+    "sha256": "88116fd973c80a72b8cb4a64fe0cde316971e17a0202657fa859fd676215871d"
+  },
+  {
+    "file": "analysis/interaction_energy/caf2/prepare_local_cafyoushui_middle_water3_interaction.py",
+    "bytes": 4773,
+    "sha256": "1bcb57095e84baded0de2ca22d3171b748160460e6e7ff03b79160926a25f70f"
+  },
+  {
+    "file": "analysis/interaction_energy/oil_water/prepare_local_feiguding_middle_water3_interaction.py",
+    "bytes": 4763,
+    "sha256": "7d8a3206acb82423580d52bffbf8a76994ac2389c61e563827cc5d64fa3aa763"
+  },
+  {
+    "file": "analysis/interaction_energy/summarize_interactions.py",
+    "bytes": 801,
+    "sha256": "35459a7b5c659205c6dcca8373e579ed0a49614b808a429f5c714140dac9278e"
+  },
+  {
+    "file": "analysis/model_validation/compute_rdf_compare.py",
+    "bytes": 17667,
+    "sha256": "fcf55aa59c5ea11e2028212bf980668680087d63e9dbdd177d0bdc464009e9cd"
+  },
+  {
+    "file": "analysis/model_validation/mace_parity.py",
+    "bytes": 12111,
+    "sha256": "24c4048477dea59692945dc55294f1efe838a892098e330799bebf86530ae1ae"
+  },
+  {
+    "file": "analysis/oil_motion/analyze_three_system_hexane_fluctuations.py",
+    "bytes": 25775,
+    "sha256": "ff3e352f87004445891ddd2cc7ad8fce46b81a3c2c39e16a5bf27d1cf20cd490"
+  },
+  {
+    "file": "analysis/oil_motion/derive_hexane_z_rms_msd.py",
+    "bytes": 5138,
+    "sha256": "0bc33d05ce470cdc680db71b73417affba535d2b013e2b64c8db4e5ba2a439a1"
+  },
+  {
+    "file": "analysis/structures/export_cif.py",
+    "bytes": 1352,
+    "sha256": "979652d8ed312ac009283bde0b9144137836b1956f196d40208633d35c1bb2fb"
+  },
+  {
+    "file": "analysis/trajectory_reducers/reduce_lammps_group_com_velocity.cpp",
+    "bytes": 6968,
+    "sha256": "cf555c6e25869c23d576f7406d490445880ce0f868ae7b07a36c865dd9c378f8"
+  },
+  {
+    "file": "analysis/trajectory_reducers/reduce_lammps_water_com_velocity.cpp",
+    "bytes": 6938,
+    "sha256": "73229dc8823babdf307432900220dbd6ff7a29da600eb58a542e829689942bff"
+  },
+  {
+    "file": "analysis/trajectory_reducers/reduce_lammps_water_layer_velocity.cpp",
+    "bytes": 7815,
+    "sha256": "800e2ab9413860b0ed47f294cf21b3d79ab4806f3632a86540088b640992c8c0"
+  },
+  {
+    "file": "analysis/water_dynamics/analyze_all_water_collective_500ps.py",
+    "bytes": 48114,
+    "sha256": "84d19f8ef7c29a793e93813f4ed0e7169d328b8d4fbfaba2fd5c023017645929"
+  },
+  {
+    "file": "analysis/water_dynamics/analyze_caf2_final_ice_hbond_stability.py",
+    "bytes": 55462,
+    "sha256": "3d4daa76207c7ca9ee53f2e2e2b22344a28f88ee3d177187aaf71b0508d57cb2"
+  },
+  {
+    "file": "analysis/water_dynamics/analyze_sio2_best_contrast_and_four_waters.py",
+    "bytes": 27963,
+    "sha256": "3e57b171f76ddd9683327aec3644d3cd7ad3cae853bf8b19d9986e05d7302bdf"
+  },
+  {
+    "file": "analysis/water_dynamics/analyze_six_advanced_collective.py",
+    "bytes": 33807,
+    "sha256": "fe83abffe322e18a7fdad3e8a13a660d852d904553b49fc7f6c0c80983a1cf7c"
+  },
+  {
+    "file": "analysis/water_dynamics/analyze_six_advanced_collective_lammps.py",
+    "bytes": 21213,
+    "sha256": "53aa7dd656ca814cff5a5d5acfe6f976c21ea19f906c4a768a45144062ece722"
+  },
+  {
+    "file": "analysis/water_dynamics/analyze_vdos_4A_from_interface.py",
+    "bytes": 15759,
+    "sha256": "cfb908f7500d3608720089ce7fe64e05d7c0219bd92fddda38b99cf34b22dc89"
+  },
+  {
+    "file": "analysis/water_dynamics/analyze_vdos_z22_25_velocity.py",
+    "bytes": 6620,
+    "sha256": "9d12e52aa6c9ea5bd92b91aaafc8cb56ba3ce52bca22e86d8d0f722c3ffe8f06"
+  },
+  {
+    "file": "analysis/water_dynamics/analyze_vdos_z_layers4A.py",
+    "bytes": 5372,
+    "sha256": "383c2640aaf82b27d7bad63f8cfbf445f0bbd55a9010f105d72c9e33f35d7d8e"
+  },
+  {
+    "file": "analysis/water_dynamics/export_common_q_100fs_h5.py",
+    "bytes": 4226,
+    "sha256": "c771153ce818d1eca278a0bad8ad0f270fdcfcff7af3a71d8b501e68d4b4ce2b"
+  },
+  {
+    "file": "analysis/water_dynamics/export_four_z_layer_waters.py",
+    "bytes": 17026,
+    "sha256": "8905f36c3034e33eee1caccb0ff1a8ce99a758812059060a3e8f2e8eee7683f5"
+  },
+  {
+    "file": "analysis/water_dynamics/export_h5_frame_poscar.py",
+    "bytes": 3112,
+    "sha256": "00995224f38cbeb78b73d875ef1f227bc7a17d8cc1b41f128f3aec2b2cd806d2"
+  },
+  {
+    "file": "analysis/water_dynamics/export_sio2_matched_unstable_water.py",
+    "bytes": 9156,
+    "sha256": "a14f8ab57a2904c5da936e58e196053a9f8852d6aa642318ce9035c0b6a44d4d"
+  },
+  {
+    "file": "analysis/water_dynamics/export_vdos_no_gaussian_two_parts.py",
+    "bytes": 6131,
+    "sha256": "8b0ecc4de846e82967c0e007d751ae70f0c3a8b6922016fd411f3989b5912d56"
+  },
+  {
+    "file": "analysis/water_dynamics/normalize_ax2_lammps_500ps.py",
+    "bytes": 11138,
+    "sha256": "67baeb70e8cd98355b06ac1a72db7949a649b5cc2df487253718625258bd43c9"
+  },
+  {
+    "file": "analysis/water_dynamics/select_and_export_matched_water.py",
+    "bytes": 26305,
+    "sha256": "627ed090c992bc415bd2dbb661a927b9c2154c02e3c34ee38487bf21cde33f7f"
+  },
+  {
+    "file": "simulation/mace/prepare_caf2_ax2_vac5.py",
+    "bytes": 1158,
+    "sha256": "4f94c32527190d2883336ade635626db61784b6fc97e3fe58c597a635bb2c972"
+  },
+  {
+    "file": "simulation/mace/run_caf2_ax2_vac5_cueq_500ps.py",
+    "bytes": 17688,
+    "sha256": "cc38550c6c63720481b56d75898bf869a909c8966be81450ae4a00e20e687483"
+  },
+  {
+    "file": "simulation/mace/run_caf2_ax2_vac5_cueq_500ps_async.py",
+    "bytes": 20198,
+    "sha256": "65af81c5c2baa9324228b5b0dd3c87558fee03ad228df10669cfa9cf38e7f55b"
+  },
+  {
+    "file": "simulation/mace/run_mace_cueq_md.py",
+    "bytes": 557,
+    "sha256": "c1099e13eba704af815909818614644c4995b04631bd47d3052148ccfdc3577e"
+  },
+  {
+    "file": "simulation/mace/run_mace_md100ps.py",
+    "bytes": 8909,
+    "sha256": "986dba9a80d6c7bc1a0112fc8e4efb67b23208d20bc371dc55dd6981eef3c8f0"
+  },
+  {
+    "file": "simulation/mace/run_mace_md500ps_vdos_h5.py",
+    "bytes": 16920,
+    "sha256": "ad94882f734297c6d07ff15836c4f23dfc8555a0e3ce910954732153be15bf94"
+  },
+  {
+    "file": "simulation/mace/run_train.sh",
+    "bytes": 1124,
+    "sha256": "9fdc32a58d3ec09902e53c2de54748e590f7fc8a68c63dfa01b1d95401111a82"
+  }
+]

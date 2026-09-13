@@ -1,0 +1,54 @@
+name: youshui_mace_all_current_zbl_20260805
+seed: 20260805
+work_dir: /media/zty/880b6bb2-2c76-473e-860f-c04fe0eb5378/jacs/youshui_mace_all_current_20260805
+train_file: /media/zty/880b6bb2-2c76-473e-860f-c04fe0eb5378/jacs/youshui_mace_all_current_20260805/dataset/train.xyz
+valid_file: /media/zty/880b6bb2-2c76-473e-860f-c04fe0eb5378/jacs/youshui_mace_all_current_20260805/dataset/valid.xyz
+energy_key: REF_energy
+forces_key: REF_forces
+device: cuda
+default_dtype: float32
+model: MACE
+r_max: 6.0
+num_radial_basis: 8
+num_cutoff_basis: 5
+hidden_irreps: 64x0e + 64x1o
+num_interactions: 2
+max_ell: 3
+correlation: 3
+pair_repulsion: true
+scaling: rms_forces_scaling
+E0s: average
+loss: huber
+huber_delta: 0.01
+energy_weight: 1.0
+forces_weight: 100.0
+config_type_weights:
+  original: 1.0
+  active_aimd: 4.0
+  active_mc: 4.0
+  oo_1p90: 8.0
+  oo_2p05: 8.0
+  oo_2p20: 6.0
+  oo_2p35: 4.0
+  oo_2p50: 3.0
+optimizer: adamw
+lr: 0.005
+weight_decay: 0.00000001
+batch_size: 2
+valid_batch_size: 2
+max_num_epochs: 100
+patience: 50
+scheduler: ReduceLROnPlateau
+scheduler_patience: 10
+lr_factor: 0.8
+ema: true
+ema_decay: 0.99
+eval_interval: 2
+error_table: PerAtomRMSE
+plot: true
+plot_frequency: 0
+save_cpu: true
+keep_checkpoints: true
+num_workers: 4
+pin_memory: true
+launcher: none

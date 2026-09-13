@@ -1,0 +1,42 @@
+plugin load     /home/zty/miniconda3/envs/deepmd/lib/libdeepmd_lmp.so
+
+units           metal
+boundary        p p p
+atom_style      atomic
+atom_modify     map yes
+read_data       ../ax2_500ps_sio2_fixed_20260809/conf_input_ax1.lmp
+replicate       2 1 1
+
+mass            1 15.999
+mass            2 28.085
+mass            3 1.008
+mass            4 12.011
+pair_style      deepmd /media/zty/880b6bb2-2c76-473e-860f-c04fe0eb5378/huanjiwan/dp/active_learning_chcorrect_aimd500_continue50k_w0p2_20260810/training_50k/selected_model/graph-compress-selected.pb
+pair_coeff      * *
+neighbor        1.0 bin
+neigh_modify    every 1 delay 0 check yes one 40000 page 400000
+
+group           fixedSi type 2
+group           fixedSiO2O id 1:48 411:458
+group           fixedSiO2 union fixedSi fixedSiO2O
+group           mobile subtract all fixedSiO2
+velocity        fixedSiO2 set 0.0 0.0 0.0
+velocity        mobile create 298.15 20260809 mom yes rot no dist gaussian
+fix             freeze fixedSiO2 setforce 0.0 0.0 0.0
+compute         tmobile mobile temp
+fix             md mobile nvt temp 298.15 298.15 0.05
+fix_modify      md temp tmobile
+fix             mom mobile momentum 1000 linear 1 1 1
+
+timestep        0.0005
+reset_timestep  0
+thermo_style    custom step time c_tmobile temp pe ke etotal press vol density
+thermo_modify   temp tmobile format float %.12g flush yes lost error
+thermo          200
+dump            vel all custom 2 velocities.500ps.ax2.sio2fixed.chcorrect50k.noch.1fs.lammpstrj.gz id type element vx vy vz
+dump_modify     vel sort id element O Si H C
+dump            pos all custom 200 positions.500ps.ax2.sio2fixed.chcorrect50k.noch.0p1ps.lammpstrj id type element x y z
+dump_modify     pos sort id element O Si H C flush yes
+restart         100000 restart.500ps.ax2.sio2fixed.chcorrect50k.noch.*
+run             1000000
+write_data      final.500ps.ax2.sio2fixed.chcorrect50k.noch.lmp

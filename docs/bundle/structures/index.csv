@@ -1,0 +1,7 @@
+system,snapshot,atoms,waters,formula,file
+CaF2-supported oil/water,AIMD model,184,40,C12H108Ca8F16O40,structures/caf2/caf2_oil_water_aimd.cif
+CaF2-supported oil/water,"MLMD, 500 ps",524,132,C24H320Ca16F32O132,structures/caf2/caf2_oil_water_mlmd_500ps.cif
+SiO2-supported oil/water,AIMD model,410,100,C12H226O148Si24,structures/sio2/sio2_oil_water_aimd.cif
+SiO2-supported oil/water,"MLMD, 500 ps",820,200,C24H452O296Si48,structures/sio2/sio2_oil_water_mlmd_500ps.cif
+Oil/water,AIMD model,260,60,C24H176O60,structures/oil_water/oil_water_aimd.cif
+Oil/water,"MLMD, 500 ps",500,140,C24H336O140,structures/oil_water/oil_water_mlmd_500ps.cif

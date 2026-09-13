@@ -1,0 +1,50 @@
+[
+  {
+    "id": "caf2",
+    "system": "CaF2-supported oil/water",
+    "framework": "MACE",
+    "elements": [
+      "H",
+      "C",
+      "O",
+      "F",
+      "Ca"
+    ],
+    "file": "models/caf2/caf2_mace_weight0p25_seed20260805.model",
+    "filename": "caf2_mace_weight0p25_seed20260805.model",
+    "bytes": 4776638,
+    "sha256": "b7d23409e4d75cfa82005983d2980a34c4b4d07ab247119da06cd1f2c63e09d9",
+    "url": "https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.4.0/caf2_mace_weight0p25_seed20260805.model"
+  },
+  {
+    "id": "sio2",
+    "system": "SiO2-supported oil/water",
+    "framework": "DeePMD-kit",
+    "elements": [
+      "O",
+      "Si",
+      "H",
+      "C"
+    ],
+    "file": "models/sio2/graph-compress-selected.pb",
+    "filename": "graph-compress-selected.pb",
+    "bytes": 212525193,
+    "sha256": "ee95db05eae0a1445bd9fcd12073abf1078f3b74d80c97d80c292759f0cc9966",
+    "url": "https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.4.0/graph-compress-selected.pb"
+  },
+  {
+    "id": "oil_water",
+    "system": "Oil/water",
+    "framework": "MACE",
+    "elements": [
+      "H",
+      "C",
+      "O"
+    ],
+    "file": "models/oil_water/youshui_mace_all_current_zbl_20260805.model",
+    "filename": "youshui_mace_all_current_zbl_20260805.model",
+    "bytes": 4550193,
+    "sha256": "0bbb12c618becd8f4ef6773a2d9e72b407830a130a46b140e324ad7dce7e1f02",
+    "url": "https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.4.0/youshui_mace_all_current_zbl_20260805.model"
+  }
+]

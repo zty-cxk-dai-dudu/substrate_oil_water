@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Please cite this repository and the accompanying article when using these files."
+type: software
+title: "Buried substrates transmit dynamic constraints through oil into the aqueous interior"
+version: "0.4.0"
+authors:
+  - family-names: Zhang
+    given-names: Tianyue
+  - family-names: Chen
+    given-names: Xiaoke
+  - family-names: Li
+    given-names: Jing
+  - family-names: Yang
+    given-names: Xiao-Yu
+repository-code: "https://github.com/zty-cxk-dai-dudu/substrate_oil_water"
+url: "https://zty-cxk-dai-dudu.github.io/substrate_oil_water/"

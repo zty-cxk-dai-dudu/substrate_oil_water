@@ -1,0 +1,104 @@
+[
+  {
+    "system": "CaF2-supported oil/water",
+    "group": "caf2",
+    "snapshot": "AIMD model",
+    "atoms": 184,
+    "waters": 40,
+    "formula": "C12H108Ca8F16O40",
+    "file": "structures/caf2/caf2_oil_water_aimd.cif",
+    "cell_A_deg": [
+      9.84,
+      8.5217,
+      30.7665,
+      90.0,
+      90.0,
+      90.0
+    ]
+  },
+  {
+    "system": "CaF2-supported oil/water",
+    "group": "caf2",
+    "snapshot": "MLMD, 500 ps",
+    "atoms": 524,
+    "waters": 132,
+    "formula": "C24H320Ca16F32O132",
+    "file": "structures/caf2/caf2_oil_water_mlmd_500ps.cif",
+    "cell_A_deg": [
+      19.6800003052,
+      8.5216999054,
+      49.3713302612,
+      90.0,
+      90.0,
+      90.0
+    ]
+  },
+  {
+    "system": "SiO2-supported oil/water",
+    "group": "sio2",
+    "snapshot": "AIMD model",
+    "atoms": 410,
+    "waters": 100,
+    "formula": "C12H226O148Si24",
+    "file": "structures/sio2/sio2_oil_water_aimd.cif",
+    "cell_A_deg": [
+      9.913,
+      8.504800000000003,
+      73.7289,
+      90.0,
+      90.0,
+      90.0
+    ]
+  },
+  {
+    "system": "SiO2-supported oil/water",
+    "group": "sio2",
+    "snapshot": "MLMD, 500 ps",
+    "atoms": 820,
+    "waters": 200,
+    "formula": "C24H452O296Si48",
+    "file": "structures/sio2/sio2_oil_water_mlmd_500ps.cif",
+    "cell_A_deg": [
+      19.826,
+      8.504800000000003,
+      73.7289,
+      90.0,
+      90.0,
+      90.0
+    ]
+  },
+  {
+    "system": "Oil/water",
+    "group": "oil_water",
+    "snapshot": "AIMD model",
+    "atoms": 260,
+    "waters": 60,
+    "formula": "C24H176O60",
+    "file": "structures/oil_water/oil_water_aimd.cif",
+    "cell_A_deg": [
+      9.84,
+      17.0217,
+      35.127961,
+      90.0,
+      90.0,
+      90.0
+    ]
+  },
+  {
+    "system": "Oil/water",
+    "group": "oil_water",
+    "snapshot": "MLMD, 500 ps",
+    "atoms": 500,
+    "waters": 140,
+    "formula": "C24H336O140",
+    "file": "structures/oil_water/oil_water_mlmd_500ps.cif",
+    "cell_A_deg": [
+      9.828,
+      15.768368,
+      56.23915468,
+      90.0,
+      90.0,
+      90.0
+    ]
+  }
+]
