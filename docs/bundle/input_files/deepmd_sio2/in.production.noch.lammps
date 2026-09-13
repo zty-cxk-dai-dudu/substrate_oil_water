@@ -11,7 +11,7 @@ mass            1 15.999
 mass            2 28.085
 mass            3 1.008
 mass            4 12.011
-pair_style      deepmd /media/zty/880b6bb2-2c76-473e-860f-c04fe0eb5378/huanjiwan/dp/active_learning_chcorrect_aimd500_continue50k_w0p2_20260810/training_50k/selected_model/graph-compress-selected.pb
+pair_style      deepmd models/sio2/graph.pb
 pair_coeff      * *
 neighbor        1.0 bin
 neigh_modify    every 1 delay 0 check yes one 40000 page 400000

@@ -26,11 +26,13 @@
       "H",
       "C"
     ],
-    "file": "models/sio2/graph-compress-selected.pb",
-    "filename": "graph-compress-selected.pb",
-    "bytes": 212525193,
-    "sha256": "ee95db05eae0a1445bd9fcd12073abf1078f3b74d80c97d80c292759f0cc9966",
-    "url": "https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.5.0/graph-compress-selected.pb"
+    "file": "models/sio2/graph.pb",
+    "filename": "graph.pb",
+    "bytes": 10893339,
+    "sha256": "f1edc429ec641ac5d487924d23f865258a1258d60858543677cec178d2825cf7",
+    "url": "https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.5.0/graph.pb",
+    "representation": "uncompressed frozen model",
+    "checkpoint_step": 50000
   },
   {
     "id": "oil_water",

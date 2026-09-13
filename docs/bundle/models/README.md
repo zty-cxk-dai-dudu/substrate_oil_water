@@ -5,12 +5,13 @@ The model weights are arranged by system and retain their original filenames.
 | System | Framework | Model file |
 | --- | --- | --- |
 | CaF2/oil/water | MACE | [`caf2/caf2_mace_weight0p25_seed20260805.model`](https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.5.0/caf2_mace_weight0p25_seed20260805.model) |
-| SiO2/oil/water | DeePMD-kit | [`sio2/graph-compress-selected.pb`](https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.5.0/graph-compress-selected.pb) |
+| SiO2/oil/water | DeePMD-kit | [`sio2/graph.pb`](https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.5.0/graph.pb) |
 | Oil/water | MACE | [`oil_water/youshui_mace_all_current_zbl_20260805.model`](https://github.com/zty-cxk-dai-dudu/substrate_oil_water/releases/download/v0.5.0/youshui_mace_all_current_zbl_20260805.model) |
 
 Use the MACE weights with the MACE/ASE simulation scripts in `simulation/mace/`.
-The SiO2 `.pb` file is the compressed model used by the DeePMD/LAMMPS input in
-`input_files/deepmd_sio2/`. Its atom-type order is **O, Si, H, C**.
+The SiO2 `.pb` file is the uncompressed frozen model from training step 50000.
+Its atom-type order is **O, Si, H, C**. The LAMMPS input is in
+`input_files/deepmd_sio2/`.
 
 ## MACE example
 
@@ -39,7 +40,7 @@ Use the following pair settings in a LAMMPS input whose atom types follow
 O, Si, H, C. Set the model path relative to the calculation directory:
 
 ```text
-pair_style deepmd models/sio2/graph-compress-selected.pb
+pair_style deepmd models/sio2/graph.pb
 pair_coeff * *
 ```
 
